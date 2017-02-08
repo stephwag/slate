@@ -117,7 +117,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="developer-guide">Developer Guide</h1>
+        
+          <h1 id="developer-guide">Developer Guide</h1>
 
 <p>iSpeech Inc. (“iSpeech”) has made efforts to ensure the accuracy and
 completeness of the information in this document. However, iSpeech Inc. disclaims all
@@ -136,7 +137,125 @@ iSpeech Inc. services. No title or ownership of any of the foregoing is granted 
 otherwise transferred hereunder. iSpeech Inc. reserves the right to make changes to
 any information herein without further notice.</p>
 
-<h1 id="introduction">Introduction</h1>
+          <h1 id="revision-history">Revision History</h1>
+
+<table><thead>
+<tr>
+<th>Publish Date</th>
+<th>Updates</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Aug  8, 2011</td>
+<td>Document created</td>
+</tr>
+<tr>
+<td>Sept 13, 2011</td>
+<td>Added ASR</td>
+</tr>
+<tr>
+<td>Sept 21, 2011</td>
+<td>Added AMR to ASR</td>
+</tr>
+<tr>
+<td>Nov 9, 2011</td>
+<td>Added voice command examples</td>
+</tr>
+<tr>
+<td>Nov 10, 2011</td>
+<td>Removed references to ASR Raw POST</td>
+</tr>
+<tr>
+<td>Nov 11, 2011</td>
+<td>Made output variable explicit for ASR and voice list examples</td>
+</tr>
+<tr>
+<td>Nov 17, 2011</td>
+<td>Specified HTTP POST/GET instead of REST, fixed /r/n typos</td>
+</tr>
+<tr>
+<td>Nov 22, 2011</td>
+<td>Added reference for Speex in ASR content-type example</td>
+</tr>
+<tr>
+<td>Dec 12, 2011</td>
+<td>Added endpadding and startpadding variables</td>
+</tr>
+<tr>
+<td>Dec 12, 2011</td>
+<td>Added TTS examples, added background highlighting to emphasize examples</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added position markers and visemes</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added Flash, Javascript/Flash, Ruby, Python, Perl SDKs</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added link to automated payment system</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added pitch parameter to TTS</td>
+</tr>
+<tr>
+<td>Aug 30, 2012</td>
+<td>Added standard non-freeform speech recognition models</td>
+</tr>
+<tr>
+<td>Aug 30, 2012</td>
+<td>Added speech recognition speex modes</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Added bit depth</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Added TTS file formats: alaw, ulaw, vox, and mp4</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Added errors</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Changed ASR language to locale</td>
+</tr>
+<tr>
+<td>Oct 3, 2012</td>
+<td>Add filename parameter to TTS</td>
+</tr>
+<tr>
+<td>Nov 12, 2012</td>
+<td>Removed eurdutchmale voice</td>
+</tr>
+<tr>
+<td>Jan 22, 2013</td>
+<td>Added Math Markup Language (MathML) information and examples</td>
+</tr>
+<tr>
+<td>Jan 24, 2013</td>
+<td>Added Speech Synthesis Markup Language (SSML) information and examples</td>
+</tr>
+<tr>
+<td>Mar 4, 2013</td>
+<td>Corrected content-length for JSON TTS example</td>
+</tr>
+<tr>
+<td>Mar 13, 2013</td>
+<td>Updated ASR locale list, added Web ASR freeform mode.</td>
+</tr>
+<tr>
+<td>Sept 7, 2016</td>
+<td>Updated supported language list.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="introduction">Introduction</h1>
 
 <p>Welcome to the iSpeech Inc. Application Programming Interface (API) Developer Guide.  This guide describes the available variables, commands, and interfaces that make up the iSpeech API.</p>
 
@@ -172,16 +291,31 @@ any information herein without further notice.</p>
 
 <h2 id="api-features">API Features</h2>
 
-<h3 id="information">Information</h3>
+<p>You can retrieve the properties of your API keys.  Key information includes a voice list, amount of credits, locales, and many other parameters.</p>
 
 <h3 id="text-to-speech">Text to Speech</h3>
 
+<p>You can synthesize spoken audio through iSpeech TTS in a variety of voices, formats, bitrates, frequencies, and playback speeds.  Math markup language (MathML) and Speech synthesis markup language (SSML) are also supported.</p>
+
 <h3 id="automated-speech-recognition">Automated Speech Recognition</h3>
+
+<p>You can convert spoken audio to text using a variety of languages and recognition models.  We can create custom recognition models to improve recognition quality.</p>
 
 <h3 id="position-markers">Position Markers</h3>
 
+<p>You can get the position in time when words are spoken in TTS audio.</p>
+
 <h3 id="visemes">Visemes</h3>
 
+<p>You can get the position in time of mouth positions when words are spoken in TTS audio.</p>
+
+          <h1 id="text-to-speech">Text to Speech</h1>
+
+          <h1 id="automated-speech-recognition">Automated Speech Recognition</h1>
+
+          <h1 id="position-markers">Position Markers</h1>
+
+          
       </div>
       <div class="dark-box">
           <div class="lang-selector">
