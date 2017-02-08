@@ -2,188 +2,77 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+  - curl
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
-
 search: true
 ---
 
+# Developer Guide
+
+iSpeech Inc. (“iSpeech”) has made efforts to ensure the accuracy and
+completeness of the information in this document. However, iSpeech Inc. disclaims all
+representations, warranties and conditions, whether express or implied, arising by
+statute, operation of law, usage of trade, course of dealing or otherwise, with respect to
+the information contained herein. iSpeech Inc. assumes no liability to any party for any
+loss or damage, whether direct, indirect, incidental, consequential, special or exemplary,
+with respect to (a) the information; and/or (b) the evaluation, application or use of any
+product or service described herein.
+
+iSpeech Inc. disclaims any and all representation that its products or services infringe
+upon any existing or future intellectual property rights. iSpeech Inc. owns and retains all
+right, title and interest in and to the iSpeech Inc. intellectual property, including without
+limitation, its patents, marks, copyrights and technology associated with the
+iSpeech Inc. services. No title or ownership of any of the foregoing is granted or
+otherwise transferred hereunder. iSpeech Inc. reserves the right to make changes to
+any information herein without further notice.
+
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the iSpeech Inc. Application Programming Interface (API) Developer Guide.  This guide describes the available variables, commands, and interfaces that make up the iSpeech API.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The iSpeech API allows developers to implement Text-To-Speech (TTS) and Automated Voice Recognition (ASR) in any Internet-enabled application.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The API's are platform agnostic which means any device that can record or play audio that is connected to the Internet can use the iSpeech API.
 
-# Authentication
+## Minimum Requirements
 
-> To authorize, use this code:
+Below are the minimum requirements needed to use the iSpeech API.  The API can be use with and without a software development kit (SDK).
 
-```ruby
-require 'kittn'
+### Internet Connection
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+iSpeech services require an Internet connection.
 
-```python
-import kittn
+### HTTP Protocol
 
-api = kittn.authorize('meowmeowmeow')
-```
+The iSpeech API follows the HTTP standard by using GET and POST.  Some web browsers limit the length of GET requests to a few thousand characters.
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+### Request/Responses
 
-```javascript
-const kittn = require('kittn');
+Requests can be in URL-encoded, JSON, or XML data formats.  You can specify the output data format of responses.  For TTS, binary data is usually returned if the request is successful.  For speech recognition, URL-encoded text, JSON, or XML can be returned by setting the output variable.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+### API Key
 
-> Make sure to replace `meowmeowmeow` with your API key.
+An API key is a password that is required for access.  To obtain an API key please visit: http://www.ispeech.org/developers and register for a developer account.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Managing API Key Settings
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+### View/Edit Keys
 
-`Authorization: meowmeowmeow`
+Manage your API keys by using the [iSpeech developer website](http://www.ispeech.org/developers).  You can request additional features for your API keys on that website.
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+## API Features
 
-# Kittens
+### Information
 
-## Get All Kittens
+### Text to Speech
 
-```ruby
-require 'kittn'
+### Automated Speech Recognition
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+### Position Markers
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+### Visemes
 
