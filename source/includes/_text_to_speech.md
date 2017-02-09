@@ -5,10 +5,10 @@ The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audi
 > Example HTTP GET Request (Using most variables)
 
 ```shell
-curl http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
 &action=convert&text=something&voice=usenglishfemale&format=mp3
 &frequency=44100&bitrate=128&speed=1&startpadding=1&endpadding=1
-&pitch=110&filename=myaudiofile
+&pitch=110&filename=myaudiofile"
 ```
 
 ## Transaction Types and URL Formats
