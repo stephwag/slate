@@ -51,3 +51,46 @@ You can get the position in time when words are spoken in TTS audio.
 ### Visemes
 
 You can get the position in time of mouth positions when words are spoken in TTS audio.
+
+## API Key Information Retrieval
+
+```shell
+curl "http://api.ispeech.org/api/rest?apikey=**YOUR_KEY_HERE**
+&action=information&output=rest"
+```
+
+> HTTP Response
+
+```shell
+[…]&voice-locale-94-1=ja&voice-locale-94-2=ja-jp&voice-gender-94=female
+&voice-description-94=Japanese+Female+Voice&wordlimit=40&model=assistant%2cdate
+%2cnfl%2cnba%2cusmoney%2cmlb%2cnumbersto9%2cnumbersto99%2cnumbersto999%2ctime
+%2cphonenumber%2cstreets%2csportsteam%2ccitystate&credits=5672606&unlimited=enabled
+&alias=enabled&asr-sms=enabled&asr-voicemail=enabled&asr-dictation=enabled
+```
+
+## Developer Support
+
+### Sales
+
+Automated purchasing system: https://www.ispeech.org/developer/purchase/
+iSpeech sales can be contacted at the following phone number: +1-917-338-7723 from 10 AM to 6 PM Eastern Time, Monday to Friday.  You can also email sales@ispeech.org.
+
+### Support / Troubleshooting
+
+Please look for the answer to your problem in the iSpeech Developer Forum: http://www.ispeech.org/forums/
+
+## Software Development Kits
+
+iSpeech SDKs simplify the iSpeech API.  You should use iSpeech SDKs if the option is available.  Only mobile SDKs made by iSpeech allow you to use the iSpeech API for free.
+
+### Availability
+
+iPhone, Android, BlackBerry, .NET, Java (Server), PHP, Flash, Javascript/Flash, Ruby, Python, Perl
+
+### API Access Pricing
+
+Platforms | Price
+---------- | -------
+iPhone, Android, BlackBerry | Free with fair usage using iSpeech SDK for non-revenue generating apps.  Apps must follow the iSpeech standard usage guidelines for branding.
+.NET, Java, PHP, Flash, Ruby, Python, Perl | Between $0.05 and $0.0001 per word (TTS) or transaction (ASR), depending on quantity
