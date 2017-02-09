@@ -309,7 +309,950 @@ any information herein without further notice.</p>
 
 <p>You can get the position in time of mouth positions when words are spoken in TTS audio.</p>
 
+<h2 id="api-key-information-retrieval">API Key Information Retrieval</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=**YOUR_KEY_HERE**
+&amp;action=information&amp;output=rest"</span>
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">[</span>…]&amp;voice-locale-94-1<span class="o">=</span>ja&amp;voice-locale-94-2<span class="o">=</span>ja-jp&amp;voice-gender-94<span class="o">=</span>female
+&amp;voice-description-94<span class="o">=</span>Japanese+Female+Voice&amp;wordlimit<span class="o">=</span>40&amp;model<span class="o">=</span>assistant%2cdate
+%2cnfl%2cnba%2cusmoney%2cmlb%2cnumbersto9%2cnumbersto99%2cnumbersto999%2ctime
+%2cphonenumber%2cstreets%2csportsteam%2ccitystate&amp;credits<span class="o">=</span>5672606&amp;unlimited<span class="o">=</span>enabled
+&amp;alias<span class="o">=</span>enabled&amp;asr-sms<span class="o">=</span>enabled&amp;asr-voicemail<span class="o">=</span>enabled&amp;asr-dictation<span class="o">=</span>enabled
+</code></pre>
+<h2 id="developer-support">Developer Support</h2>
+
+<h3 id="sales">Sales</h3>
+
+<p>Automated purchasing system: https://www.ispeech.org/developer/purchase/
+iSpeech sales can be contacted at the following phone number: +1-917-338-7723 from 10 AM to 6 PM Eastern Time, Monday to Friday.  You can also email sales@ispeech.org.</p>
+
+<h3 id="support-troubleshooting">Support / Troubleshooting</h3>
+
+<p>Please look for the answer to your problem in the iSpeech Developer Forum: http://www.ispeech.org/forums/</p>
+
+<h2 id="software-development-kits">Software Development Kits</h2>
+
+<p>iSpeech SDKs simplify the iSpeech API.  You should use iSpeech SDKs if the option is available.  Only mobile SDKs made by iSpeech allow you to use the iSpeech API for free.</p>
+
+<h3 id="availability">Availability</h3>
+
+<p>iPhone, Android, BlackBerry, .NET, Java (Server), PHP, Flash, Javascript/Flash, Ruby, Python, Perl</p>
+
+<h3 id="api-access-pricing">API Access Pricing</h3>
+
+<table><thead>
+<tr>
+<th>Platforms</th>
+<th>Price</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>iPhone, Android, BlackBerry</td>
+<td>Free with fair usage using iSpeech SDK for non-revenue generating apps.  Apps must follow the iSpeech standard usage guidelines for branding.</td>
+</tr>
+<tr>
+<td>.NET, Java, PHP, Flash, Ruby, Python, Perl</td>
+<td>Between $0.05 and $0.0001 per word (TTS) or transaction (ASR), depending on quantity</td>
+</tr>
+</tbody></table>
+
           <h1 id="text-to-speech">Text to Speech</h1>
+
+<p>The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You&rsquo;ll always receive audio data or an error message in the same HTTP transaction.</p>
+
+<blockquote>
+<p>Example HTTP GET Request (Using most variables)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl http://api.ispeech.org/api/rest?apikey<span class="o">=</span>developerdemokeydeveloperdemokey
+&amp;action<span class="o">=</span>convert&amp;text<span class="o">=</span>something&amp;voice<span class="o">=</span>usenglishfemale&amp;format<span class="o">=</span>mp3
+&amp;frequency<span class="o">=</span>44100&amp;bitrate<span class="o">=</span>128&amp;speed<span class="o">=</span>1&amp;startpadding<span class="o">=</span>1&amp;endpadding<span class="o">=</span>1
+&amp;pitch<span class="o">=</span>110&amp;filename<span class="o">=</span>myaudiofile
+</code></pre>
+<h2 id="transaction-types-and-url-formats">Transaction Types and URL Formats</h2>
+
+<table><thead>
+<tr>
+<th>Transaction Type</th>
+<th>Input Format</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP GET/POST</td>
+<td>URL Encoded</td>
+<td>http://api.ispeech.org/api/rest</td>
+</tr>
+<tr>
+<td>HTTP GET/POST</td>
+<td>XML</td>
+<td>http://api.ispeech.org/api/xml</td>
+</tr>
+<tr>
+<td>HTTP GET/POST</td>
+<td>JSON</td>
+<td>http://api.ispeech.org/api/json</td>
+</tr>
+</tbody></table>
+
+<h2 id="request-parameters">Request Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Example Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Apikey</td>
+<td>32 character hex integer</td>
+<td>abcdef1234567890abcdef1234567890</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>String</td>
+<td>convert, ssml</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>String</td>
+<td>Hello World</td>
+</tr>
+<tr>
+<td>Ssml (optional)</td>
+<td>String</td>
+<td>&lt;?xml version=”1.0” ?&gt;&lt;speak version= […]</td>
+</tr>
+<tr>
+<td>Voice (optional)</td>
+<td>String</td>
+<td>usenglishfemale (default)</td>
+</tr>
+<tr>
+<td>Format (optional)</td>
+<td>String</td>
+<td>mp3 (default)</td>
+</tr>
+<tr>
+<td>Frequency (optional)</td>
+<td>Integer (hertz)</td>
+<td>16000 (default)</td>
+</tr>
+<tr>
+<td>Bitrate (optional)</td>
+<td>Integer (kbps)</td>
+<td>48 (default)</td>
+</tr>
+<tr>
+<td>Speed (optional)</td>
+<td>Integer</td>
+<td>-10 to 10 (default: 0)</td>
+</tr>
+<tr>
+<td>Startpadding (optional)</td>
+<td>Integer (seconds)</td>
+<td>5 (default: 0)</td>
+</tr>
+<tr>
+<td>Endpadding (optional)</td>
+<td>Integer (seconds)</td>
+<td>5 (default: 0)</td>
+</tr>
+<tr>
+<td>Pitch (optional)</td>
+<td>Integer</td>
+<td>0 to 200 (default: 100)</td>
+</tr>
+<tr>
+<td>Bitdepth (optional)</td>
+<td>Integer (bits per sample)</td>
+<td>8 or 16 (default: 16)</td>
+</tr>
+<tr>
+<td>Filename (optional)</td>
+<td>String</td>
+<td>myaudio or myaudio.mp3 (default: rest.*)</td>
+</tr>
+<tr>
+<td>Library (optional)</td>
+<td>String</td>
+<td>libmath</td>
+</tr>
+</tbody></table>
+
+<h2 id="voices-standard">Voices - Standard</h2>
+
+<blockquote>
+<p>HTTP GET Request (Setting voice to European French Female)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;format=mp3&amp;voice=eurfrenchfemale"</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Alias</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>US English Female (default)</td>
+<td>usenglishfemale</td>
+</tr>
+<tr>
+<td>US English Male</td>
+<td>usenglishmale</td>
+</tr>
+<tr>
+<td>UK English Female</td>
+<td>ukenglishfemale</td>
+</tr>
+<tr>
+<td>UK English Male</td>
+<td>ukenglishmale</td>
+</tr>
+<tr>
+<td>Australian English Female</td>
+<td>auenglishfemale</td>
+</tr>
+<tr>
+<td>US Spanish Female</td>
+<td>usspanishfemale</td>
+</tr>
+<tr>
+<td>US Spanish Male</td>
+<td>usspanishmale</td>
+</tr>
+<tr>
+<td>Chinese Female</td>
+<td>chchinesefemale</td>
+</tr>
+<tr>
+<td>Chinese Male</td>
+<td>chchinesemale</td>
+</tr>
+<tr>
+<td>Hong Kong Cantonese Female</td>
+<td>hkchinesefemale</td>
+</tr>
+<tr>
+<td>Taiwan Chinese Female</td>
+<td>twchinesefemale</td>
+</tr>
+<tr>
+<td>Japanese Female</td>
+<td>jpjapanesefemale</td>
+</tr>
+<tr>
+<td>Japanese Male</td>
+<td>jpjapanesemale</td>
+</tr>
+<tr>
+<td>Korean Female</td>
+<td>krkoreanfemale</td>
+</tr>
+<tr>
+<td>Korean Male</td>
+<td>krkoreanmale</td>
+</tr>
+<tr>
+<td>Canadian English Female</td>
+<td>caenglishfemale</td>
+</tr>
+<tr>
+<td>Hungarian Female</td>
+<td>huhungarianfemale</td>
+</tr>
+<tr>
+<td>Brazilian Portuguese Female</td>
+<td>brportuguesefemale</td>
+</tr>
+<tr>
+<td>European Portuguese Female</td>
+<td>eurportuguesefemale</td>
+</tr>
+<tr>
+<td>European Portuguese Male</td>
+<td>eurportuguesemale</td>
+</tr>
+<tr>
+<td>European Spanish Female</td>
+<td>eurspanishfemale</td>
+</tr>
+<tr>
+<td>European Spanish Male</td>
+<td>eurspanishmale</td>
+</tr>
+<tr>
+<td>European Catalan Female</td>
+<td>eurcatalanfemale</td>
+</tr>
+<tr>
+<td>European Czech Female</td>
+<td>eurczechfemale</td>
+</tr>
+<tr>
+<td>European Danish Female</td>
+<td>eurdanishfemale</td>
+</tr>
+<tr>
+<td>European Finnish Female</td>
+<td>eurfinnishfemale</td>
+</tr>
+<tr>
+<td>European French Female</td>
+<td>eurfrenchfemale</td>
+</tr>
+<tr>
+<td>European French Male</td>
+<td>eurfrenchmale</td>
+</tr>
+<tr>
+<td>European Norwegian Female</td>
+<td>eurnorwegianfemale</td>
+</tr>
+<tr>
+<td>European Dutch Female</td>
+<td>eurdutchfemale</td>
+</tr>
+<tr>
+<td>European Polish Female</td>
+<td>eurpolishfemale</td>
+</tr>
+<tr>
+<td>European Italian Female</td>
+<td>euritalianfemale</td>
+</tr>
+<tr>
+<td>European Italian Male</td>
+<td>euritalianmale</td>
+</tr>
+<tr>
+<td>European Turkish Female</td>
+<td>eurturkishfemale</td>
+</tr>
+<tr>
+<td>European Turkish Male</td>
+<td>eurturkishmale</td>
+</tr>
+<tr>
+<td>European German Female</td>
+<td>eurgermanfemale</td>
+</tr>
+<tr>
+<td>European German Male</td>
+<td>eurgermanmale</td>
+</tr>
+<tr>
+<td>Russian Female</td>
+<td>rurussianfemale</td>
+</tr>
+<tr>
+<td>Russian Male</td>
+<td>rurussianmale</td>
+</tr>
+<tr>
+<td>Swedish Female</td>
+<td>swswedishfemale</td>
+</tr>
+<tr>
+<td>Canadian French Female</td>
+<td>cafrenchfemale</td>
+</tr>
+<tr>
+<td>Canadian French Male</td>
+<td>cafrenchmale</td>
+</tr>
+<tr>
+<td>Arabic Male</td>
+<td>ararabicmale</td>
+</tr>
+</tbody></table>
+
+<h2 id="voices-custom">Voices - Custom</h2>
+
+<p>Custom Voices may be enabled for your account.  They can be found in the developer portal -&gt; api key properties -&gt; custom voices.  You can use them by setting the variable voice to the custom alias.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Alias</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>President Obama</td>
+<td>Obama (voice=obama)</td>
+</tr>
+<tr>
+<td>Custom Voice</td>
+<td>customvoice1 (voice=customvoice1)</td>
+</tr>
+</tbody></table>
+
+<h2 id="voices-list-retrieval">Voices - List Retrieval</h2>
+
+<blockquote>
+<p>HTTP GET Network Transaction to get XML voice list.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=information&amp;output=(xml, rest, or json)"</span>
+</code></pre>
+<blockquote>
+<p>XML Response</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="nt">&lt;data&gt;</span>
+    <span class="nt">&lt;result&gt;</span>success<span class="nt">&lt;/result&gt;</span>
+    <span class="nt">&lt;voice-1&gt;</span>krkoreanfemale<span class="nt">&lt;/voice-1&gt;</span>
+    <span class="nt">&lt;voice-locale-1-1&gt;</span>ko-kr<span class="nt">&lt;/voice-locale-1-1&gt;</span>
+    <span class="nt">&lt;voice-locale-1-2&gt;</span>ko<span class="nt">&lt;/voice-locale-1-2&gt;</span>
+    <span class="nt">&lt;voice-gender-1&gt;</span>female<span class="nt">&lt;/voice-gender-1&gt;</span>
+    <span class="nt">&lt;voice-description-1&gt;</span>Korean Female Voice<span class="nt">&lt;/voice-description-1&gt;</span>
+    <span class="nt">&lt;voice-2&gt;</span>usenglishfemale<span class="nt">&lt;/voice-2&gt;</span>
+    <span class="nt">&lt;voice-locale-2-1&gt;</span>en-us<span class="nt">&lt;/voice-locale-2-1&gt;</span>
+    <span class="nt">&lt;voice-locale-2-2&gt;</span>en<span class="nt">&lt;/voice-locale-2-2&gt;</span>
+    <span class="nt">&lt;voice-gender-2&gt;</span>female<span class="nt">&lt;/voice-gender-2&gt;</span>
+    <span class="nt">&lt;voice-description-2&gt;</span>United States English Female Voice<span class="nt">&lt;/voice-description-2&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<blockquote>
+<p>JSON Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"voice-gender-48"</span><span class="p">:</span><span class="s2">"female"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-locale-22-1"</span><span class="p">:</span><span class="s2">"fr-ca"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-locale-8-1"</span><span class="p">:</span><span class="s2">"pt-br"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-description-2"</span><span class="p">:</span><span class="s2">"Finnish Female Voice"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-description-3"</span><span class="p">:</span><span class="s2">"Hong Kong Chinese Male Voice"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-58"</span><span class="p">:</span><span class="s2">"eurdanishfemale"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-description-1"</span><span class="p">:</span><span class="s2">"Korean Female Voice"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-description-6"</span><span class="p">:</span><span class="s2">"Chinese Female Voice"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"voice-description-7"</span><span class="p">:</span><span class="s2">"United Kingdom English Female Voice"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>REST / URL Encoded Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="s2">"result=success&amp;voice-1=krkoreanfemale2&amp;voice-locale-1-1=ko-kr&amp;voice-gender-1=female&amp;voice-description-1=Korean+Female+Voice&amp;voice-2=eurfinnishfemale&amp;voice-locale-2-1=fi-fi&amp;voice-gender-2=female&amp;voice-description-2=Finnish+Female+Voice&amp;voice-3=chchinesemale1&amp;voice-locale-3-1=zh&amp;voice-locale-3-2=zh-hk[...more voices...]"</span>
+</code></pre>
+<p>A current list of voices that are enabled for an API key can be retrieved in REST, JSON, and XML format by using the following service.  HTTP GET and POST are supported.  A web browser or a REST client can be used to make these HTTP requests.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Supported Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>output</td>
+<td>xml, json, rest</td>
+</tr>
+</tbody></table>
+
+<h2 id="speed">Speed</h2>
+
+<blockquote>
+<p>HTTP GET Request (Setting speed to 5)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3&amp;speed=5"</span>
+</code></pre>
+<p>Most voices support speed controls.</p>
+
+<table><thead>
+<tr>
+<th>Speed</th>
+<th>Value (Integer)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Fastest</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Faster</td>
+<td>Speed &gt; 0</td>
+</tr>
+<tr>
+<td>Normal (default)</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Slower</td>
+<td>Speed &lt; 0</td>
+</tr>
+<tr>
+<td>Slowest</td>
+<td>-10</td>
+</tr>
+</tbody></table>
+
+<h2 id="bitrates">Bitrates</h2>
+
+<blockquote>
+<p>HTTP GET Request (Setting bitrate to 16 kilobits per second)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3&amp;bitrate=16"</span>
+</code></pre>
+<h3 id="note-bitrates-can-only-be-selected-for-mp3s">Note: Bitrates can only be selected for MP3s.</h3>
+
+<p>Valid values are 16, 24, 32, 48 (default), 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, or 320.
+Bitrates are listed in kilobits per second.</p>
+
+<h2 id="formats">Formats</h2>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting format to wav)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=wav"</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Extension</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Audio Interchange File Format</td>
+<td>aiff</td>
+</tr>
+<tr>
+<td>MPEG Layer 3 (default)</td>
+<td>mp3</td>
+</tr>
+<tr>
+<td>Ogg Vorbis</td>
+<td>ogg</td>
+</tr>
+<tr>
+<td>Windows Media Audio</td>
+<td>wma</td>
+</tr>
+<tr>
+<td>Free Lossless Audio Codec</td>
+<td>flac</td>
+</tr>
+<tr>
+<td>Wave PCM</td>
+<td>wav</td>
+</tr>
+<tr>
+<td>Wave (alaw)</td>
+<td>alaw</td>
+</tr>
+<tr>
+<td>Wave (µ-law)</td>
+<td>ulaw</td>
+</tr>
+<tr>
+<td>Dialogic ADPCM</td>
+<td>vox</td>
+</tr>
+<tr>
+<td>MPEG-4</td>
+<td>mp4</td>
+</tr>
+</tbody></table>
+
+<h2 id="frequencies">Frequencies</h2>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting frequency to 16000 Hz)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;frequency=16000"</span>
+</code></pre>
+<p>Possible values: 8000, 11025, 16000 (default), 22050, 24000, 32000, 44100, 48000 cycles per second (Hertz)</p>
+
+<h2 id="padding">Padding</h2>
+
+<p>Padding adds silence to a section of the audio file.</p>
+
+<h3 id="start-padding">Start Padding</h3>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting start padding to 3 seconds)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;startpadding=3"</span>
+</code></pre>
+<p>Adds a period of silence to the beginning of the audio file.</p>
+
+<h3 id="end-padding">End Padding</h3>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting end padding to 3 seconds)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;endpadding=3"</span>
+</code></pre>
+<p>Adds a period of silence to the beginning of the audio file.</p>
+
+<h2 id="pitch">Pitch</h2>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting pitch to 50)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;pitch=50"</span>
+</code></pre>
+<p>Possible values: 0 to 200 (integer), 0 is lowest pitch, 100 is default, 200 is highest pitch. Pitch is enabled only on some voices.</p>
+
+<h2 id="bit-depth">Bit Depth</h2>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting bit depth to 8)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=wav
+&amp;bitdepth=8"</span>
+</code></pre>
+<p>The bit depth is amount of audio detail for each audio sample.  </p>
+
+<p>Possible values are 8 and 16 (default) bits/sample on AIFF, FLAC, and WAVE file formats.</p>
+
+<h2 id="filename">Filename</h2>
+
+<blockquote>
+<p>Example HTTP GET Request (Setting filename of audio)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=wav
+&amp;filename=myaudiofile"</span>
+</code></pre>
+<p>The filename is the name of the audio file that will download.  Specifying the extension is optional.  If the extension is missing, the correct extension will be added automatically.  The default is rest.[extension], for example:  rest.mp3.</p>
+
+<h2 id="speech-synthesis-markup-language-ssml">Speech Synthesis Markup Language (SSML)</h2>
+
+<blockquote>
+<p>Example HTTP GET Request (Emphasis added on the word big)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=YOUR_API_KEY_HERE&amp;
+action=ssml&amp;ssml=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cspeak
+%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org
+%2F2001%2F10%2Fsynthesis%22%20xmlns%3Axsi%3D%22http%3A%2F%2F
+www.w3.org%2F2001%2FXMLSchema-instance%22
+%20xsi%3AschemaLocation%3D%22http%3A%2F%2Fwww.w3.org%2F2001
+%2F10%2Fsynthesis%20http%3A%2F%2Fwww.w3.org%2FTR%2Fspeech-synthesis
+%2Fsynthesis.xsd%22%20xml%3Alang%3D%22en-US%22%3E
+That%20is%20a%20%3Cemphasis%3E%20big%20%3C%2Femphasis%3E%20car!
+%3C%2Fspeak%3E"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight xml"><code>SSML used:
+
+<span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;speak</span> <span class="na">version=</span><span class="s">"1.0"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2001/10/synthesis"</span>
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.w3.org/2001/10/synthesis</span>
+                   <span class="err">http://www.w3.org/TR/speech-synthesis/synthesis.xsd"</span>
+         <span class="na">xml:lang=</span><span class="s">"en-US"</span><span class="nt">&gt;</span>
+  That is a <span class="nt">&lt;emphasis&gt;</span> big <span class="nt">&lt;/emphasis&gt;</span> car!
+<span class="nt">&lt;/speak&gt;</span>
+Audio synthesized as, “That is a BIG car!”.
+</code></pre>
+<p>SSML tags are used to customize the way a text-to-speech engine creates audio.  The tags can be used to add pauses, change emphasis, and change pronunciation.  This option is disabled by default but can be requested by emailing sales@ispeech.org.
+The parameter “action” must set to “ssml” and the parameter “ssml” must be set to a complete SSML XML statement.</p>
+
+<p>The parameter “text” is not used and the parameters voice and speed should be represented using the “voice” and “prosody” SSML tags instead of request parameters.</p>
+
+<p>More information on SSML can be found at: http://www.w3.org/TR/speech-synthesis/.</p>
+
+<h2 id="math-markup-language-mathml">Math Markup Language (MathML)</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+&amp;apikey=YOUR_API_KEY_HERE&amp;library=libmath
+&amp;text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
+%3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight xml"><code>MathML used: <span class="nt">&lt;mrow&gt;&lt;mtext&gt;&lt;sup&gt;</span>+<span class="nt">&lt;/sup&gt;&lt;/mtext&gt;&lt;mn&gt;</span>7<span class="nt">&lt;/mn&gt;&lt;/mrow&gt;</span>
+
+Audio synthesized as, “positive 7” instead of plus 7.
+</code></pre>
+<p>MathML tags are used to display and represent mathematical statements.  This option is disabled by default but can be requested by emailing sales@ispeech.org.</p>
+
+<p>Remember to set “library” to “libmath” so that the MathML processor loads your text as MathML.</p>
+
+<p>More information on MathML can be found at: https://developer.mozilla.org/en-US/docs/MathML</p>
+
+<p>The following table lists MathML tags supported by the iSpeech API.</p>
+
+<table><thead>
+<tr>
+<th>MathML Tag</th>
+<th>Purpose</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mfrac</td>
+<td>Used to display fractions</td>
+</tr>
+<tr>
+<td>mi</td>
+<td>Rendered as an identifier such as function names, variables or symbolic constants.</td>
+</tr>
+<tr>
+<td>mn</td>
+<td>A numeric literal which is normally a sequence of digits with a possible separator (a dot or a comma). However, it is also allowed to have arbitrary text in it which is actually a numeric quantity, for example &ldquo;eleven&rdquo;.</td>
+</tr>
+<tr>
+<td>mo</td>
+<td>An operator in a broad sense. Besides operators in strict mathematical meaning, this element also includes &ldquo;operators&rdquo; like parentheses, separators like comma and semicolon, or &ldquo;absolute value&rdquo; bars.</td>
+</tr>
+<tr>
+<td>mroot</td>
+<td>Displays roots with an explicit index. Two arguments are accepted, which leads to the syntax:<code class="prettyprint">&lt;mroot&gt;</code> base index <code class="prettyprint">&lt;/mroot&gt;</code>.</td>
+</tr>
+<tr>
+<td>mrow</td>
+<td>Groups sub-expressions, which usually contain one or more operators with their respective operands (such as <code class="prettyprint">&lt;mi&gt;</code> and <code class="prettyprint">&lt;mn&gt;</code>). This element renders as a horizontal row containing its arguments.</td>
+</tr>
+<tr>
+<td>msqrt</td>
+<td>Displays square roots (no index is displayed). The square root accepts only one argument, which leads to the following syntax: <code class="prettyprint">&lt;msqrt&gt;</code> base <code class="prettyprint">&lt;/msqrt&gt;</code>.</td>
+</tr>
+<tr>
+<td>msup, sup</td>
+<td>Attaches a superscript to an expression.</td>
+</tr>
+<tr>
+<td>mtext</td>
+<td>Renders arbitrary text with no notational meaning, such as comments or annotations.</td>
+</tr>
+<tr>
+<td>mspan, span</td>
+<td>Used for highlighting text or just general styling of an equation</td>
+</tr>
+<tr>
+<td>mtable, table</td>
+<td>Creates tables or matrices. Inside a <code class="prettyprint">&lt;mtable&gt;</code>, only <code class="prettyprint">&lt;mtr&gt;</code> and <code class="prettyprint">&lt;mtd&gt;</code> elements may appear. These elements are similar to <code class="prettyprint">&lt;table&gt;</code>, <code class="prettyprint">&lt;tr&gt;</code> and <code class="prettyprint">&lt;td&gt;</code> elements of HTML.</td>
+</tr>
+</tbody></table>
+
+<h2 id="example-transactions">Example Transactions</h2>
+
+<blockquote>
+<p>HTTP POST URL encoded request for Text to Speech</p>
+</blockquote>
+<pre class="highlight shell"><code>POST /api/rest HTTP/1.1
+Content-Length: 71
+Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>UTF-8
+Host: api.ispeech.org
+Connection: Keep-Alive
+
+<span class="nv">apikey</span><span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>convert&amp;text<span class="o">=</span>hello+world
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 200 OK
+Connection: close
+Server: iSpeech Cloud/1.2
+Accept-Ranges: none
+X-Time-Length: 3853
+X-Content-Hash: e969ef3dd0dc0e9c417f31f7ffbd10ed
+Content-Length: 23760
+Content-Type: audio/mpeg
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="o">[</span>mp3 binary audio data]
+</code></pre>
+<blockquote>
+<p>HTTP POST JSON request for Text to Speech</p>
+</blockquote>
+<pre class="highlight shell"><code>POST /api/json HTTP/1.1
+Content-Length: 111
+Content-Type: application/json; <span class="nv">charset</span><span class="o">=</span>UTF-8
+Host: api.ispeech.org
+Connection: Keep-Alive
+
+<span class="o">{</span><span class="s2">"apikey"</span>:<span class="s2">"developerdemokeydeveloperdemokey"</span>,<span class="s2">"action"</span>:<span class="s2">"convert"</span>,<span class="s2">"text"</span>:<span class="s2">"hello world"</span>,<span class="s2">"voice"</span>:<span class="s2">"usenglishfemale"</span><span class="o">}</span>
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code>Connection: close
+Server: iSpeech Cloud/1.2
+Accept-Ranges: none
+X-Time-Length: 3853
+X-Content-Hash: e969ef3dd0dc0e9c417f31f7ffbd10ed
+Content-Length: 23760
+Content-Type: audio/mpeg
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="o">[</span>mp3 audio binary data]
+</code></pre>
+<blockquote>
+<p>HTTP POST XML request for Text to Speech</p>
+</blockquote>
+<pre class="highlight xml"><code>POST /api/xml HTTP/1.1
+Content-Length: 150
+Content-Type: application/xml; charset=UTF-8
+Host: api.ispeech.org
+Connection: Keep-Alive
+
+<span class="nt">&lt;data&gt;</span>
+<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
+<span class="nt">&lt;action&gt;</span>convert<span class="nt">&lt;/action&gt;</span>
+<span class="nt">&lt;text&gt;</span>hello world<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;voice&gt;</span>usenglishfemale<span class="nt">&lt;/voice&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 200 OK
+Connection: close
+Server: iSpeech Cloud/1.2
+Accept-Ranges: none
+X-Time-Length: 3853
+X-Content-Hash: 4affe15913fccd851ebf08a7e2650955
+Content-Length: 23760
+Content-Type: audio/mpeg
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="o">[</span>mp3 audio binary data]
+</code></pre>
+<blockquote>
+<p>Example of a text-to-speech network transaction with an error. 
+Responses with an error message return HTTP status response code “HTTP/1.0 202 Accepted”.</p>
+</blockquote>
+<pre class="highlight shell"><code>GET /api/rest?apikey<span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>convert&amp;
+<span class="nv">text</span><span class="o">=</span>something&amp;output<span class="o">=</span>rest&amp;voice<span class="o">=</span>usenglishfemal HTTP/1.1
+Host: api.ispeech.org
+Connection: keep-alive
+User-Agent: Mozilla/5.0 <span class="o">(</span>Windows NT 6.1; WOW64<span class="o">)</span> AppleWebKit/535.2 <span class="o">(</span>KHTML, like Gecko<span class="o">)</span> Chrome/15.0.874.58 Safari/535.2
+Accept: text/html,application/xhtml+xml,application/xml;q<span class="o">=</span>0.9,<span class="k">*</span>/<span class="k">*</span>;<span class="nv">q</span><span class="o">=</span>0.8
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q<span class="o">=</span>0.8
+Accept-Charset: ISO-8859-1,utf-8;q<span class="o">=</span>0.7,<span class="k">*</span>;<span class="nv">q</span><span class="o">=</span>0.3
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 202 Accepted
+Server: iSpeech Cloud/1.2
+Connection: close
+Content-Length: 41
+Content-Type: text/plain
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0,
+proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="nv">result</span><span class="o">=</span>error&amp;code<span class="o">=</span>8&amp;message<span class="o">=</span>Invalid+voice
+</code></pre>
+<p>The following examples are packet captures from TCP connections that used the HTTP protocol.  You can compare your network traffic to these transactions to debug code.  Wireshark can be used to analyze network connections.  A REST client can be used to make these HTTP requests.</p>
+
+<h2 id="example-network-transactions-containing-mathml">Example network transactions containing MathML</h2>
+
+<h2 id="errors">Errors</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Invalid API key</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Could not convert text</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Not enough credits</td>
+</tr>
+<tr>
+<td>4</td>
+<td>No action specified</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Invalid text</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Too many words</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Invalid text entry</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Invalid voice</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Invalid file format</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Invalid speed</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Invalid dictionary</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Invalid bitrate</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Invalid frequency</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Option not enabled for your account. Please contact iSpeech sales at +1 (917) 338-7723 or at sales@ispeech.org to modify your license.</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Invalid pitch</td>
+</tr>
+<tr>
+<td>100</td>
+<td>This evaluation account has exceeded its trial period. Please contact iSpeech sales at +1 (917) 338-7723 or at sales@ispeech.org to upgrade your license.</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Your key has been disabled. Please contact iSpeech sales at +1 (917) 338-7723 or at sales@ispeech.org to modify your license.</td>
+</tr>
+<tr>
+<td>997</td>
+<td>No api access</td>
+</tr>
+<tr>
+<td>998</td>
+<td>Unsupported output type</td>
+</tr>
+<tr>
+<td>999</td>
+<td>Invalid request</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>Invalid Request Method POST Required</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>SSML error</td>
+</tr>
+</tbody></table>
 
           <h1 id="automated-speech-recognition">Automated Speech Recognition</h1>
 
