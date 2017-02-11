@@ -7,6 +7,7 @@ language_tabs:
 includes:
   - developer_guide
   - introduction
+  - transaction_types
   - text_to_speech
   - automated_speech_recognition
   - position_markers
