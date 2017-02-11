@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - curl
+  - shell
 
 includes:
   - developer_guide
