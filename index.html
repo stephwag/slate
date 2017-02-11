@@ -165,12 +165,6 @@ any information herein without further notice.</p>
 
 <p>An API key is a password that is required for access.  To obtain an API key please visit: http://www.ispeech.org/developers and register for a developer account.</p>
 
-<h2 id="managing-api-key-settings">Managing API Key Settings</h2>
-
-<h3 id="view-edit-keys">View/Edit Keys</h3>
-
-<p>Manage your API keys by using the <a href="http://www.ispeech.org/developers">iSpeech developer website</a>.  You can request additional features for your API keys on that website.</p>
-
 <h2 id="api-features">API Features</h2>
 
 <p>You can retrieve the properties of your API keys.  Key information includes a voice list, amount of credits, locales, and many other parameters.</p>
@@ -191,19 +185,6 @@ any information herein without further notice.</p>
 
 <p>You can get the position in time of mouth positions when words are spoken in TTS audio.</p>
 
-<h2 id="api-key-information-retrieval">API Key Information Retrieval</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=**YOUR_KEY_HERE**
-&amp;action=information&amp;output=rest"</span>
-</code></pre>
-<blockquote>
-<p>HTTP Response</p>
-</blockquote>
-<pre class="highlight shell"><code><span class="o">[</span>…]&amp;voice-locale-94-1<span class="o">=</span>ja&amp;voice-locale-94-2<span class="o">=</span>ja-jp&amp;voice-gender-94<span class="o">=</span>female
-&amp;voice-description-94<span class="o">=</span>Japanese+Female+Voice&amp;wordlimit<span class="o">=</span>40&amp;model<span class="o">=</span>assistant%2cdate
-%2cnfl%2cnba%2cusmoney%2cmlb%2cnumbersto9%2cnumbersto99%2cnumbersto999%2ctime
-%2cphonenumber%2cstreets%2csportsteam%2ccitystate&amp;credits<span class="o">=</span>5672606&amp;unlimited<span class="o">=</span>enabled
-&amp;alias<span class="o">=</span>enabled&amp;asr-sms<span class="o">=</span>enabled&amp;asr-voicemail<span class="o">=</span>enabled&amp;asr-dictation<span class="o">=</span>enabled
-</code></pre>
 <h2 id="developer-support">Developer Support</h2>
 
 <h3 id="sales">Sales</h3>
@@ -240,6 +221,35 @@ iSpeech sales can be contacted at the following phone number: +1-917-338-7723 fr
 <td>Between $0.05 and $0.0001 per word (TTS) or transaction (ASR), depending on quantity</td>
 </tr>
 </tbody></table>
+
+          <h1 id="authentication">Authentication</h1>
+
+<h3 id="api-key">API Key</h3>
+
+<blockquote>
+<p>API Key Information Retrieval</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=**YOUR_KEY_HERE**
+&amp;action=information&amp;output=rest"</span>
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="o">[</span>…]&amp;voice-locale-94-1<span class="o">=</span>ja&amp;voice-locale-94-2<span class="o">=</span>ja-jp&amp;voice-gender-94<span class="o">=</span>female
+&amp;voice-description-94<span class="o">=</span>Japanese+Female+Voice&amp;wordlimit<span class="o">=</span>40&amp;model<span class="o">=</span>assistant%2cdate
+%2cnfl%2cnba%2cusmoney%2cmlb%2cnumbersto9%2cnumbersto99%2cnumbersto999%2ctime
+%2cphonenumber%2cstreets%2csportsteam%2ccitystate&amp;credits<span class="o">=</span>5672606&amp;unlimited<span class="o">=</span>enabled
+&amp;alias<span class="o">=</span>enabled&amp;asr-sms<span class="o">=</span>enabled&amp;asr-voicemail<span class="o">=</span>enabled&amp;asr-dictation<span class="o">=</span>enabled
+</code></pre>
+<aside class="info">
+All calls to the API require an API Key as a parameter
+</aside>
+
+<p>An API key is a password that is required for access. To obtain an API key please visit: http://www.ispeech.org/developers and register for a developer account.</p>
+
+<h3 id="view-edit-keys">View/Edit Keys</h3>
+
+<p>Manage your API keys by using the <a href="http://www.ispeech.org/developers">iSpeech developer website</a>.  You can request additional features for your API keys on that website.</p>
 
           <h1 id="supported-transaction-types">Supported Transaction Types</h1>
 
