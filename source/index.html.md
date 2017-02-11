@@ -6,12 +6,12 @@ language_tabs:
 
 includes:
   - developer_guide
-  - revision_history
   - introduction
   - text_to_speech
   - automated_speech_recognition
   - position_markers
   - visemes
+  - revision_history
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
