@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;curl&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,7 +101,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" style="margin:0 auto;margin-top:20px;margin-bottom:10px" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="curl">curl</a>
+              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -136,124 +136,6 @@ limitation, its patents, marks, copyrights and technology associated with the
 iSpeech Inc. services. No title or ownership of any of the foregoing is granted or
 otherwise transferred hereunder. iSpeech Inc. reserves the right to make changes to
 any information herein without further notice.</p>
-
-          <h1 id="revision-history">Revision History</h1>
-
-<table><thead>
-<tr>
-<th>Publish Date</th>
-<th>Updates</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Aug  8, 2011</td>
-<td>Document created</td>
-</tr>
-<tr>
-<td>Sept 13, 2011</td>
-<td>Added ASR</td>
-</tr>
-<tr>
-<td>Sept 21, 2011</td>
-<td>Added AMR to ASR</td>
-</tr>
-<tr>
-<td>Nov 9, 2011</td>
-<td>Added voice command examples</td>
-</tr>
-<tr>
-<td>Nov 10, 2011</td>
-<td>Removed references to ASR Raw POST</td>
-</tr>
-<tr>
-<td>Nov 11, 2011</td>
-<td>Made output variable explicit for ASR and voice list examples</td>
-</tr>
-<tr>
-<td>Nov 17, 2011</td>
-<td>Specified HTTP POST/GET instead of REST, fixed /r/n typos</td>
-</tr>
-<tr>
-<td>Nov 22, 2011</td>
-<td>Added reference for Speex in ASR content-type example</td>
-</tr>
-<tr>
-<td>Dec 12, 2011</td>
-<td>Added endpadding and startpadding variables</td>
-</tr>
-<tr>
-<td>Dec 12, 2011</td>
-<td>Added TTS examples, added background highlighting to emphasize examples</td>
-</tr>
-<tr>
-<td>Aug 24, 2012</td>
-<td>Added position markers and visemes</td>
-</tr>
-<tr>
-<td>Aug 24, 2012</td>
-<td>Added Flash, Javascript/Flash, Ruby, Python, Perl SDKs</td>
-</tr>
-<tr>
-<td>Aug 24, 2012</td>
-<td>Added link to automated payment system</td>
-</tr>
-<tr>
-<td>Aug 24, 2012</td>
-<td>Added pitch parameter to TTS</td>
-</tr>
-<tr>
-<td>Aug 30, 2012</td>
-<td>Added standard non-freeform speech recognition models</td>
-</tr>
-<tr>
-<td>Aug 30, 2012</td>
-<td>Added speech recognition speex modes</td>
-</tr>
-<tr>
-<td>Sept 10, 2012</td>
-<td>Added bit depth</td>
-</tr>
-<tr>
-<td>Sept 10, 2012</td>
-<td>Added TTS file formats: alaw, ulaw, vox, and mp4</td>
-</tr>
-<tr>
-<td>Sept 10, 2012</td>
-<td>Added errors</td>
-</tr>
-<tr>
-<td>Sept 10, 2012</td>
-<td>Changed ASR language to locale</td>
-</tr>
-<tr>
-<td>Oct 3, 2012</td>
-<td>Add filename parameter to TTS</td>
-</tr>
-<tr>
-<td>Nov 12, 2012</td>
-<td>Removed eurdutchmale voice</td>
-</tr>
-<tr>
-<td>Jan 22, 2013</td>
-<td>Added Math Markup Language (MathML) information and examples</td>
-</tr>
-<tr>
-<td>Jan 24, 2013</td>
-<td>Added Speech Synthesis Markup Language (SSML) information and examples</td>
-</tr>
-<tr>
-<td>Mar 4, 2013</td>
-<td>Corrected content-length for JSON TTS example</td>
-</tr>
-<tr>
-<td>Mar 13, 2013</td>
-<td>Updated ASR locale list, added Web ASR freeform mode.</td>
-</tr>
-<tr>
-<td>Sept 7, 2016</td>
-<td>Updated supported language list.</td>
-</tr>
-</tbody></table>
 
           <h1 id="introduction">Introduction</h1>
 
@@ -1256,13 +1138,855 @@ Pragma: no-cache
 
           <h1 id="automated-speech-recognition">Automated Speech Recognition</h1>
 
+<h2 id="transaction-types-and-url-formats">Transaction Types and URL Formats</h2>
+
+<table><thead>
+<tr>
+<th>Transaction Type</th>
+<th>Input Format</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP GET/POST</td>
+<td>URL Encoded</td>
+<td>http://api.ispeech.org/api/rest</td>
+</tr>
+<tr>
+<td>HTTP GET/POST</td>
+<td>XML</td>
+<td>http://api.ispeech.org/api/xml</td>
+</tr>
+<tr>
+<td>HTTP GET/POST</td>
+<td>JSON</td>
+<td>http://api.ispeech.org/api/json</td>
+</tr>
+</tbody></table>
+
+<p>There are currently three transaction types available for use with the iSpeech API.  All transactions must use the appropriate URL.</p>
+
+<h2 id="request-parameters">Request Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Example Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Apikey</td>
+<td>32 character hex integer</td>
+<td>abcdef1234567890abcdef1234567890</td>
+</tr>
+<tr>
+<td>Locale</td>
+<td>String</td>
+<td>en-US</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>String</td>
+<td>recognize</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>String</td>
+<td>audio/x-wav, audio/amr, audio/speex</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>String (base64, remove \r\n)</td>
+<td>UklGRgAKAQBsl/j2+sa0dR [&hellip;]</td>
+</tr>
+<tr>
+<td>Output (optional)</td>
+<td>String</td>
+<td>xml, json, rest (default: rest)</td>
+</tr>
+<tr>
+<td>Freeform (optional)</td>
+<td>Integer (0 to 7)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Model (optional)</td>
+<td>String</td>
+<td>assistant</td>
+</tr>
+<tr>
+<td>Speexmode (optional)</td>
+<td>Integer (1 to 3)</td>
+<td>1 (speex codec only)</td>
+</tr>
+</tbody></table>
+
+<h2 id="locales">Locales</h2>
+
+<h3 id="standard-locales">Standard Locales</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Alias</th>
+<th>Support</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>English (United States)</td>
+<td>locale=en-US (default)</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>English (Canada)</td>
+<td>locale=en-CA</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>English (United Kingdom)</td>
+<td>locale=en-GB</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>English (Australia)</td>
+<td>locale=en-AU</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>Spanish (Spain)</td>
+<td>locale=es-ES</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>Spanish (Mexico)</td>
+<td>locale=es-MX</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>Italian (Italy)</td>
+<td>locale=it-IT</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>French (France)</td>
+<td>locale=fr-FR</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>French (Canada)</td>
+<td>locale=fr-CA</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>Polish (Poland)</td>
+<td>locale=pl-PL</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>Portuguese (Portugal)</td>
+<td>locale=pt-PT</td>
+<td>freeform &amp; command list</td>
+</tr>
+<tr>
+<td>Catalan (Catalan)</td>
+<td>locale=ca-ES</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Chinese (Taiwan)</td>
+<td>locale=zh-TW</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Danish (Denmark)</td>
+<td>locale=da-DK</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>German (Germany)</td>
+<td>locale=fr-FR</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Finnish (Finland)</td>
+<td>locale=it-IT</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Japanese (Japan)</td>
+<td>locale=ja-JP</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Korean (Korea)</td>
+<td>locale=ko-KR</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Dutch (Netherlands)</td>
+<td>locale=nl-NL</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Norwegian (Norway)</td>
+<td>locale=nb-NO</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Portuguese (Brazil)</td>
+<td>locale=pt-BR</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Russian (Russia)</td>
+<td>locale=ru-RU</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Swedish (Sweden)</td>
+<td>locale=sv-SE</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Chinese (People&rsquo;s Republic of China)</td>
+<td>locale=zh-CN</td>
+<td>command list</td>
+</tr>
+<tr>
+<td>Chinese (Hong Kong S.A.R.)</td>
+<td>locale=zh-HK</td>
+<td>command list</td>
+</tr>
+</tbody></table>
+
+<h3 id="custom-locales">Custom Locales</h3>
+
+<p>Contact sales@ispeech.org for details.</p>
+
+<h2 id="speech-recognition-models">Speech Recognition Models</h2>
+
+<p>Statistical speech recognition models are used to increase the probability of a correct result.  Models with fewer word choices are faster and more accurate than the freeform models.  For example, in the food model the words, “7 up” would be recognized as, “7up”.  Another example is with a food model would recognize the audio from “ice cream”  as “ice cream” instead of “i scream”.</p>
+
+<h3 id="standard-freeform-models">Standard Freeform Models</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Use Case</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SMS / General Messages</td>
+<td>freeform=1</td>
+<td>Text Messages</td>
+</tr>
+<tr>
+<td>Voice mail</td>
+<td>freeform=2</td>
+<td>Voice Mail</td>
+</tr>
+<tr>
+<td>Dictation</td>
+<td>freeform=3</td>
+<td>Normal speech</td>
+</tr>
+<tr>
+<td>Message (coming soon)</td>
+<td>freeform=4</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>Instant Message (coming soon)</td>
+<td>freeform=5</td>
+<td>Instant Message</td>
+</tr>
+<tr>
+<td>Transcript (coming soon)</td>
+<td>freeform=6</td>
+<td></td>
+</tr>
+<tr>
+<td>Memo (coming soon)</td>
+<td>freeform=7</td>
+<td>Memorandum</td>
+</tr>
+<tr>
+<td>Web (coming soon)</td>
+<td>freeform=8</td>
+<td>Web search</td>
+</tr>
+</tbody></table>
+
+<h3 id="standard-non-freeform-models">Standard Non-Freeform Models</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Use Case</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Assistant</td>
+<td>model=assistant</td>
+<td>Personal Assistant</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>model=date</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>NFL</td>
+<td>model=nfl</td>
+<td>Football teams</td>
+</tr>
+<tr>
+<td>NBA</td>
+<td>model=nba</td>
+<td>Basketball teams</td>
+</tr>
+<tr>
+<td>US Money</td>
+<td>model=usmoney</td>
+<td>US Money</td>
+</tr>
+<tr>
+<td>Numbers to 9</td>
+<td>model=numbersto9</td>
+<td>Numbers, 0 to 9</td>
+</tr>
+<tr>
+<td>Numbers to 99</td>
+<td>model=numbersto99</td>
+<td>Numbers, 0 to 99</td>
+</tr>
+<tr>
+<td>Numbers to 999</td>
+<td>model=numbersto999</td>
+<td>Numbers, 0 to 999</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>model=time</td>
+<td>Time</td>
+</tr>
+<tr>
+<td>Phone number</td>
+<td>model=phonenumber</td>
+<td>Phone number</td>
+</tr>
+<tr>
+<td>Streets</td>
+<td>model=streets</td>
+<td>Streets</td>
+</tr>
+<tr>
+<td>Sports Team</td>
+<td>model=sportsteam</td>
+<td>Sports Teams</td>
+</tr>
+<tr>
+<td>City/State</td>
+<td>model=citystate</td>
+<td>US City/States</td>
+</tr>
+</tbody></table>
+
+<h3 id="custom-models">Custom Models</h3>
+
+<p>Contact sales@ispeech.org for details.</p>
+
+<h2 id="speex-modes">Speex Modes</h2>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Narrowband (8khz)</td>
+<td>speexmode=1</td>
+</tr>
+<tr>
+<td>Wideband (16khz) - Recommended</td>
+<td>speexmode=2</td>
+</tr>
+<tr>
+<td>Ultra Wideband (32kz)</td>
+<td>speexmode=3</td>
+</tr>
+</tbody></table>
+
+<p>The speexmode variable tells the server which format your Speex data is encoded in for improved speech recognition quality. It is highly recommended you include this parameter when using Speex encoding.</p>
+
+<h2 id="example-transactions-for-freeform-speech">Example Transactions for Freeform Speech</h2>
+
+<h3 id="format-of-examples">Format of Examples</h3>
+
+<blockquote>
+<p>HTTP REST Request for Speech Recognition</p>
+</blockquote>
+<pre class="highlight shell"><code>POST /api/rest HTTP/1.1
+Content-Length: 34875
+Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>UTF-8
+Host: api.ispeech.org
+Connection: Keep-Alive
+
+<span class="nv">apikey</span><span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>recognize&amp;freeform<span class="o">=</span>1&amp;content-type<span class="o">=</span>audio/x-wav&amp;output<span class="o">=</span>rest&amp;locale<span class="o">=</span>en-us&amp;audio<span class="o">=[</span>base64 encoded something.wav without <span class="se">\r\n</span> characters]
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 59
+Content-Type: text/plain
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="nv">text</span><span class="o">=</span>something&amp;confidence<span class="o">=</span>0.0216270890086889&amp;result<span class="o">=</span>success
+</code></pre>
+<blockquote>
+<p>HTTP JSON Request for Speech Recognition</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/json</span><span class="w"> </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w">
+</span><span class="err">Content-Length:</span><span class="w"> </span><span class="mi">34897</span><span class="w">
+</span><span class="err">Content-Type:</span><span class="w"> </span><span class="err">text/plain;</span><span class="w"> </span><span class="err">charset=UTF</span><span class="mi">-8</span><span class="w">
+</span><span class="err">Host:</span><span class="w"> </span><span class="err">api.ispeech.org</span><span class="w">
+</span><span class="err">Connection:</span><span class="w"> </span><span class="err">Keep-Alive</span><span class="w">
+
+</span><span class="p">{</span><span class="nt">"apikey"</span><span class="p">:</span><span class="s2">"developerdemokeydeveloperdemokey"</span><span class="p">,</span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"recognize"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"freeform"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"locale"</span><span class="p">:</span><span class="s2">"en-us"</span><span class="p">,</span><span class="w"> </span><span class="nt">"content-type"</span><span class="p">:</span><span class="s2">"audio/x-wav"</span><span class="p">,</span><span class="w"> </span><span class="nt">"output"</span><span class="p">:</span><span class="s2">"rest"</span><span class="p">,</span><span class="w"> </span><span class="nt">"audio"</span><span class="p">:</span><span class="err">"</span><span class="p">[</span><span class="err">base</span><span class="mi">64</span><span class="w"> </span><span class="err">encoded</span><span class="w"> </span><span class="err">something.wav</span><span class="w"> </span><span class="err">without</span><span class="w"> </span><span class="err">\r\n</span><span class="w"> </span><span class="err">characters</span><span class="p">]</span><span class="err">”</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 59
+Content-Type: application/json
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="nv">text</span><span class="o">=</span>something&amp;confidence<span class="o">=</span>0.0134419081732631&amp;result<span class="o">=</span>success
+</code></pre>
+<blockquote>
+<p>HTTP XML network request for Speech Recognition</p>
+</blockquote>
+<pre class="highlight xml"><code>
+POST /api/xml HTTP/1.1
+Content-Length: 34953
+Content-Type: text/plain; charset=UTF-8
+Host: api.ispeech.org
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.0.1 (java 1.5)
+Expect: 100-Continue
+
+<span class="nt">&lt;data&gt;</span>
+<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
+<span class="nt">&lt;action&gt;</span>recognize<span class="nt">&lt;/action&gt;</span>
+<span class="nt">&lt;freeform&gt;</span>1<span class="nt">&lt;/freeform&gt;</span>
+<span class="nt">&lt;locale&gt;</span>en-us<span class="nt">&lt;/locale&gt;</span>
+<span class="nt">&lt;content-type&gt;</span>audio/x-wav<span class="nt">&lt;/content-type&gt;</span>
+<span class="nt">&lt;output&gt;</span>xml<span class="nt">&lt;/output&gt;</span>
+<span class="nt">&lt;audio&gt;</span>[base64 encoded something.wav without \r\n characters]<span class="nt">&lt;/audio&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<blockquote>
+<p>XML Response</p>
+</blockquote>
+<pre class="highlight xml"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 140
+Content-Type: text/xml
+Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;data&gt;</span>
+<span class="nt">&lt;text&gt;</span>something<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;confidence&gt;</span>0.0216270890086889<span class="nt">&lt;/confidence&gt;</span>
+<span class="nt">&lt;result&gt;</span>success<span class="nt">&lt;/result&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<p>The following examples are packet captures from TCP connections that used the HTTP protocol.  You can compare your network traffic to these transactions to debug code.  Wireshark can be used to analyze network connections.</p>
+
+<h2 id="command-lists">Command Lists</h2>
+
+<p>Command lists are used to limit the possible values returned during speech recognition.  For example, if the command list contains only “yes” and “no”, the result will be either “yes” or “no”.</p>
+
+<h2 id="example-transactions-for-command-lists">Example Transactions for Command Lists</h2>
+
+<h3 id="formatting-of-examples">Formatting of Examples</h3>
+
+<blockquote>
+<p>HTTP XML network request to detect commands from a list</p>
+</blockquote>
+<pre class="highlight xml"><code>POST /api/xml HTTP/1.1
+Content-Length: 80941
+Content-Type: text/xml; charset=UTF-8
+Host: api.ispeech.org
+Expect: 100-Continue
+
+<span class="nt">&lt;data&gt;</span>
+<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
+<span class="nt">&lt;action&gt;</span>recognize<span class="nt">&lt;/action&gt;</span>
+<span class="nt">&lt;locale&gt;</span>en-US<span class="nt">&lt;/locale&gt;</span>
+<span class="nt">&lt;output&gt;</span>xml<span class="nt">&lt;/output&gt;</span>
+<span class="nt">&lt;alias&gt;</span>command1|YESNOMAYBE<span class="nt">&lt;/alias&gt;</span>
+<span class="nt">&lt;YESNOMAYBE&gt;</span>yes|no|maybe<span class="nt">&lt;/YESNOMAYBE&gt;</span>
+<span class="nt">&lt;command1&gt;</span>say %YESNOMAYBE%<span class="nt">&lt;/command1&gt;</span>
+<span class="nt">&lt;content-type&gt;</span>audio/x-wav<span class="nt">&lt;/content-type&gt;</span>
+<span class="nt">&lt;audio&gt;</span>[base64 encoded say_yes.wav without \r\n characters]<span class="nt">&lt;/audio&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<blockquote>
+<p>XML Response</p>
+</blockquote>
+<pre class="highlight xml"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 137
+Content-Type: text/xml
+Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;data&gt;</span>
+<span class="nt">&lt;text&gt;</span>say yes<span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;confidence&gt;</span>0.726751327514648<span class="nt">&lt;/confidence&gt;</span>
+<span class="nt">&lt;result&gt;</span>success<span class="nt">&lt;/result&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<blockquote>
+<p>HTTP REST network request to detect commands from a list</p>
+</blockquote>
+<pre class="highlight shell"><code>POST /api/rest/ HTTP/1.1
+Content-Length: 72682
+Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>UTF-8
+Host: api.ispeech.org
+Expect: 100-Continue
+
+<span class="nv">apikey</span><span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>recognize&amp;locale<span class="o">=</span>en-us&amp;content-type<span class="o">=</span>audio%2Fwav&amp;output<span class="o">=</span>rest&amp;alias<span class="o">=</span>command1|NAMES
+&amp;NAMES<span class="o">=</span>john|mary|anna&amp;command1<span class="o">=</span>call%20%25NAMES%25&amp;audio<span class="o">=[</span>base64 encoded wav without <span class="se">\r\n</span> characters]
+</code></pre>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 58
+Content-Type: text/plain
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="nv">text</span><span class="o">=</span>call+mary&amp;confidence<span class="o">=</span>0.672464966773987&amp;result<span class="o">=</span>success
+</code></pre>
+<blockquote>
+<p>HTTP POST JSON request to detect commands from a list</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/json/</span><span class="w"> </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w">
+</span><span class="err">Content-Length:</span><span class="w"> </span><span class="mi">22788</span><span class="w">
+</span><span class="err">Content-Type:</span><span class="w"> </span><span class="err">text/plain;</span><span class="w"> </span><span class="err">charset=UTF</span><span class="mi">-8</span><span class="w">
+</span><span class="err">Host:</span><span class="w"> </span><span class="err">api.ispeech.org</span><span class="w">
+</span><span class="err">Expect:</span><span class="w"> </span><span class="mi">100</span><span class="err">-Continue</span><span class="w">
+
+</span><span class="p">{</span><span class="nt">"apikey"</span><span class="p">:</span><span class="s2">"developerdemokeydeveloperdemokey"</span><span class="p">,</span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"recognize"</span><span class="p">,</span><span class="nt">"locale"</span><span class="p">:</span><span class="s2">"en-US"</span><span class="p">,</span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">"command1|YESNOMAYBE"</span><span class="p">,</span><span class="nt">"YESNOMAYBE"</span><span class="p">:</span><span class="s2">"yes|no|maybe"</span><span class="p">,</span><span class="nt">"command1"</span><span class="p">:</span><span class="s2">"say %YESNOMAYBE%"</span><span class="p">,</span><span class="nt">"content-type"</span><span class="p">:</span><span class="s2">"audio/x-wav"</span><span class="p">,</span><span class="nt">"output"</span><span class="p">:</span><span class="s2">"rest"</span><span class="p">,</span><span class="nt">"audio"</span><span class="p">:</span><span class="s2">"[base64 encoded say_yes.wav without \r\n characters]"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 56
+Content-Type: application/json
+Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="nv">text</span><span class="o">=</span>say+yes&amp;confidence<span class="o">=</span>0.726751327514648&amp;result<span class="o">=</span>success
+</code></pre>
+<blockquote>
+<p>Advanced Example, HTTP POST XML request to detect multiple audio commands from multiple lists</p>
+</blockquote>
+<pre class="highlight xml"><code>POST /api/xml HTTP/1.1
+Content-Length: 91393
+Content-Type: text/xml; charset=UTF-8
+Host: api.ispeech.org
+Connection: Keep-Alive
+Expect: 100-Continue
+
+<span class="nt">&lt;data&gt;</span>
+<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
+<span class="nt">&lt;action&gt;</span>recognize<span class="nt">&lt;/action&gt;</span>
+<span class="nt">&lt;locale&gt;</span>en-us<span class="nt">&lt;/locale&gt;</span>
+<span class="nt">&lt;content-type&gt;</span>audio/x-wav<span class="nt">&lt;/content-type&gt;</span>
+<span class="nt">&lt;output&gt;</span>xml<span class="nt">&lt;/output&gt;</span>
+<span class="nt">&lt;alias&gt;</span>command1|command2|MONITORACTIONS|COLORLIST|
+DYNAMITEACTIONS|OBJECTLIST<span class="nt">&lt;/alias&gt;</span>
+<span class="nt">&lt;MONITORACTIONS&gt;</span>on|off|reset<span class="nt">&lt;/MONITORACTIONS&gt;</span>
+<span class="nt">&lt;COLORLIST&gt;</span>blue|green|red|yellow|purple|orange|black|white|cyan<span class="nt">&lt;/COLORLIST&gt;</span>
+<span class="nt">&lt;DYNAMITEACTIONS&gt;</span>explode|fizzle out<span class="nt">&lt;/DYNAMITEACTIONS&gt;</span>
+<span class="nt">&lt;OBJECTLIST&gt;</span>monitor %MONITORACTIONS%|color %COLORLIST%|dynamite  %DYNAMITEACTIONS%<span class="nt">&lt;/OBJECTLIST&gt;</span>
+<span class="nt">&lt;command1&gt;</span>set %OBJECTLIST%<span class="nt">&lt;/command1&gt;</span>
+<span class="nt">&lt;command2&gt;</span>quit menu<span class="nt">&lt;/command2&gt;</span>
+<span class="nt">&lt;audio&gt;</span>[base64 encoded set_dynamite_explode.wav
+without \r\n characters]<span class="nt">&lt;/audio&gt;</span>
+<span class="nt">&lt;/data&gt;</span>
+</code></pre>
+<blockquote>
+<p>XML Response</p>
+</blockquote>
+<pre class="highlight xml"><code>HTTP/1.0 200 OK
+Connection: close
+Content-Length: 150
+Content-Type: text/xml
+Cache-Control: no-cache, no-store, must-revalidate,
+max-age=0, proxy-revalidate, no-transform
+Pragma: no-cache
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><span class="nt">&lt;data&gt;&lt;text&gt;</span>set dynamite explode<span class="nt">&lt;/text&gt;&lt;confidence&gt;</span>0.589247465133667<span class="nt">&lt;/confidence&gt;</span>
+<span class="nt">&lt;result&gt;</span>success<span class="nt">&lt;/result&gt;&lt;/data&gt;</span>
+</code></pre>
+<aside class="success">
+If a user speaks &ldquo;say yes&rdquo;, ”say maybe”, or “say no” it will be successfully recognized.
+</aside>
+
+<aside class="success">
+If a user speaks &ldquo;call john&rdquo;, &ldquo;call anna&rdquo;, or &ldquo;call mary&rdquo; it will be successfully recognized.
+</aside>
+
+<aside class="success">
+If a user speaks &ldquo;set monitor on&rdquo;, ”set monitor off”, or “set dynamite explode”, etc. it will be successfully recognized.
+</aside>
+
+<p>The following examples are packet captures of TCP connections that use the HTTP protocol.  You can compare your network traffic with these transactions to debug code.  Wireshark can be used to analyze network connections.  A REST client can be used to make these HTTP requests.</p>
+
+<h2 id="errors">Errors</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Summary</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Invalid API key</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Not enough credits</td>
+</tr>
+<tr>
+<td>4</td>
+<td>No action specified</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Invalid file format</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Invalid dictionary</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Invalid alias list</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Alias missing</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Invalid content type</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Alias list too complex</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Could not recognize</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Invalid locale</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Bad audio data</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Model not supported or disabled</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Selected model does not support desired locale</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Locale not supported</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Option not enabled for your account. Please contact iSpeech sales at +1 (917) 338-7723 or at sales@ispeech.org to modify your license.</td>
+</tr>
+<tr>
+<td>100</td>
+<td>This evaluation account has exceeded its trial period. Please contact iSpeech sales at +1 (917) 338-7723 or at sales@ispeech.org to upgrade your license.</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Your key has been disabled. Please contact iSpeech sales at +1 (917) 338-7723 or at sales@ispeech.org to modify your license.</td>
+</tr>
+<tr>
+<td>997</td>
+<td>No api access</td>
+</tr>
+<tr>
+<td>998</td>
+<td>Unsupported output type</td>
+</tr>
+<tr>
+<td>999</td>
+<td>Invalid request</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>Invalid Request Method POST Required</td>
+</tr>
+</tbody></table>
+
           <h1 id="position-markers">Position Markers</h1>
 
           
+          <h1 id="revision-history">Revision History</h1>
+
+<table><thead>
+<tr>
+<th>Publish Date</th>
+<th>Updates</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Aug  8, 2011</td>
+<td>Document created</td>
+</tr>
+<tr>
+<td>Sept 13, 2011</td>
+<td>Added ASR</td>
+</tr>
+<tr>
+<td>Sept 21, 2011</td>
+<td>Added AMR to ASR</td>
+</tr>
+<tr>
+<td>Nov 9, 2011</td>
+<td>Added voice command examples</td>
+</tr>
+<tr>
+<td>Nov 10, 2011</td>
+<td>Removed references to ASR Raw POST</td>
+</tr>
+<tr>
+<td>Nov 11, 2011</td>
+<td>Made output variable explicit for ASR and voice list examples</td>
+</tr>
+<tr>
+<td>Nov 17, 2011</td>
+<td>Specified HTTP POST/GET instead of REST, fixed /r/n typos</td>
+</tr>
+<tr>
+<td>Nov 22, 2011</td>
+<td>Added reference for Speex in ASR content-type example</td>
+</tr>
+<tr>
+<td>Dec 12, 2011</td>
+<td>Added endpadding and startpadding variables</td>
+</tr>
+<tr>
+<td>Dec 12, 2011</td>
+<td>Added TTS examples, added background highlighting to emphasize examples</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added position markers and visemes</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added Flash, Javascript/Flash, Ruby, Python, Perl SDKs</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added link to automated payment system</td>
+</tr>
+<tr>
+<td>Aug 24, 2012</td>
+<td>Added pitch parameter to TTS</td>
+</tr>
+<tr>
+<td>Aug 30, 2012</td>
+<td>Added standard non-freeform speech recognition models</td>
+</tr>
+<tr>
+<td>Aug 30, 2012</td>
+<td>Added speech recognition speex modes</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Added bit depth</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Added TTS file formats: alaw, ulaw, vox, and mp4</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Added errors</td>
+</tr>
+<tr>
+<td>Sept 10, 2012</td>
+<td>Changed ASR language to locale</td>
+</tr>
+<tr>
+<td>Oct 3, 2012</td>
+<td>Add filename parameter to TTS</td>
+</tr>
+<tr>
+<td>Nov 12, 2012</td>
+<td>Removed eurdutchmale voice</td>
+</tr>
+<tr>
+<td>Jan 22, 2013</td>
+<td>Added Math Markup Language (MathML) information and examples</td>
+</tr>
+<tr>
+<td>Jan 24, 2013</td>
+<td>Added Speech Synthesis Markup Language (SSML) information and examples</td>
+</tr>
+<tr>
+<td>Mar 4, 2013</td>
+<td>Corrected content-length for JSON TTS example</td>
+</tr>
+<tr>
+<td>Mar 13, 2013</td>
+<td>Updated ASR locale list, added Web ASR freeform mode.</td>
+</tr>
+<tr>
+<td>Sept 7, 2016</td>
+<td>Updated supported language list.</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="curl">curl</a>
+                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>
