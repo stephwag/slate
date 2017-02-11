@@ -251,71 +251,7 @@ All calls to the API require an API Key as a parameter
 
 <p>Manage your API keys by using the <a href="http://www.ispeech.org/developers">iSpeech developer website</a>.  You can request additional features for your API keys on that website.</p>
 
-          <h1 id="supported-transaction-types">Supported Transaction Types</h1>
-
-<table><thead>
-<tr>
-<th>Transaction Type</th>
-<th>Input Format</th>
-<th>URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>HTTP GET/POST</td>
-<td>URL Encoded</td>
-<td>http://api.ispeech.org/api/rest</td>
-</tr>
-<tr>
-<td>HTTP GET/POST</td>
-<td>XML</td>
-<td>http://api.ispeech.org/api/xml</td>
-</tr>
-<tr>
-<td>HTTP GET/POST</td>
-<td>JSON</td>
-<td>http://api.ispeech.org/api/json</td>
-</tr>
-</tbody></table>
-
-          <h1 id="text-to-speech">Text to Speech</h1>
-
-<p>The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You&rsquo;ll always receive audio data or an error message in the same HTTP transaction.</p>
-
-<blockquote>
-<p>Example HTTP GET Request (Using most variables)</p>
-</blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3
-&amp;frequency=44100&amp;bitrate=128&amp;speed=1&amp;startpadding=1&amp;endpadding=1
-&amp;pitch=110&amp;filename=myaudiofile"</span>
-</code></pre>
-<h2 id="transaction-types-and-url-formats">Transaction Types and URL Formats</h2>
-
-<table><thead>
-<tr>
-<th>Transaction Type</th>
-<th>Input Format</th>
-<th>URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>HTTP GET/POST</td>
-<td>URL Encoded</td>
-<td>http://api.ispeech.org/api/rest</td>
-</tr>
-<tr>
-<td>HTTP GET/POST</td>
-<td>XML</td>
-<td>http://api.ispeech.org/api/xml</td>
-</tr>
-<tr>
-<td>HTTP GET/POST</td>
-<td>JSON</td>
-<td>http://api.ispeech.org/api/json</td>
-</tr>
-</tbody></table>
-
-<h2 id="request-parameters">Request Parameters</h2>
+<h3 id="request-parameter-reference">Request Parameter Reference</h3>
 
 <table><thead>
 <tr>
@@ -327,8 +263,79 @@ All calls to the API require an API Key as a parameter
 <tr>
 <td>Apikey</td>
 <td>32 character hex integer</td>
-<td>abcdef1234567890abcdef1234567890</td>
+<td><strong>YOUR_KEY_HERE</strong></td>
 </tr>
+</tbody></table>
+
+          <h1 id="transaction-types">Transaction Types</h1>
+
+<p>The iSpeech API supports URL Encoded, XML, and JSON formats.</p>
+
+<aside class="info">
+Position Marker and Viseme data is currently only presented in XML form
+</aside>
+
+<h3 id="supported-transaction-types">Supported transaction types</h3>
+
+<table><thead>
+<tr>
+<th>Transaction Type</th>
+<th>Input Format</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP GET/POST</td>
+<td>URL Encoded</td>
+<td>http://api.ispeech.org/api/rest</td>
+</tr>
+<tr>
+<td>HTTP GET/POST</td>
+<td>XML</td>
+<td>http://api.ispeech.org/api/xml</td>
+</tr>
+<tr>
+<td>HTTP GET/POST</td>
+<td>JSON</td>
+<td>http://api.ispeech.org/api/json</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Supported Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>output</td>
+<td>xml, json, rest</td>
+</tr>
+</tbody></table>
+
+          <h1 id="text-to-speech">Text to Speech</h1>
+
+<blockquote>
+<p>Example HTTP GET Request (Using most variables)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
+&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3
+&amp;frequency=44100&amp;bitrate=128&amp;speed=1&amp;startpadding=1&amp;endpadding=1
+&amp;pitch=110&amp;filename=myaudiofile"</span>
+</code></pre>
+<p>The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You&rsquo;ll always receive audio data or an error message in the same HTTP transaction.</p>
+
+<h2 id="request-parameters">Request Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Example Value</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>Action</td>
 <td>String</td>
@@ -1174,34 +1181,6 @@ Pragma: no-cache
 
           <h1 id="automated-speech-recognition">Automated Speech Recognition</h1>
 
-<h2 id="transaction-types-and-url-formats">Transaction Types and URL Formats</h2>
-
-<table><thead>
-<tr>
-<th>Transaction Type</th>
-<th>Input Format</th>
-<th>URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>HTTP GET/POST</td>
-<td>URL Encoded</td>
-<td>http://api.ispeech.org/api/rest</td>
-</tr>
-<tr>
-<td>HTTP GET/POST</td>
-<td>XML</td>
-<td>http://api.ispeech.org/api/xml</td>
-</tr>
-<tr>
-<td>HTTP GET/POST</td>
-<td>JSON</td>
-<td>http://api.ispeech.org/api/json</td>
-</tr>
-</tbody></table>
-
-<p>There are currently three transaction types available for use with the iSpeech API.  All transactions must use the appropriate URL.</p>
-
 <h2 id="request-parameters">Request Parameters</h2>
 
 <table><thead>
@@ -1211,11 +1190,6 @@ Pragma: no-cache
 <th>Example Value</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>Apikey</td>
-<td>32 character hex integer</td>
-<td>abcdef1234567890abcdef1234567890</td>
-</tr>
 <tr>
 <td>Locale</td>
 <td>String</td>
@@ -1918,11 +1892,6 @@ If a user speaks &ldquo;set monitor on&rdquo;, ”set monitor off”, or “set 
 </tr>
 </thead><tbody>
 <tr>
-<td>Apikey</td>
-<td>32 character hex integer</td>
-<td>abcdef1234567890abcdef1234567890</td>
-</tr>
-<tr>
 <td>Action</td>
 <td>String</td>
 <td>markers</td>
@@ -2155,11 +2124,6 @@ Due to the overhead of creation, we strongly recommend using short sentences ins
 </tr>
 </thead><tbody>
 <tr>
-<td>Apikey</td>
-<td>32 character hex integer</td>
-<td>abcdef1234567890abcdef1234567890</td>
-</tr>
-<tr>
 <td>Action</td>
 <td>String</td>
 <td>viseme</td>
@@ -2290,6 +2254,110 @@ Viseme data is currently only presented in XML form.
 <p>To obtain viseme information from the iSpeech API, you query the server in the same manner as a normal text-to-speech request. The only difference between a TTS request and a marker request is the “action” parameter, which is set to “convert” for audio, and “viseme” for viseme information.</p>
 
 <h2 id="viseme-chart">Viseme Chart</h2>
+
+<table cellpadding="0" cellspacing="0" class="c0">
+         <tbody>
+            <tr class="c60">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth08.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 0</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth09.jpg" width="100%"><span class="c4">&nbsp;Mouth 1</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth11.jpg" width="100%"><span class="c4">Mouth 2</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth12.jpg" width="100%"><span class="c4">Mouth 3</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth01.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 4</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth00.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 5</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth03.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 6</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth02.jpg" width="100%"><span class="c4">&nbsp;Mouth 7</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth04.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 8</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth13.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 9</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth14.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 10</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth15.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 11</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth16.jpg" width="100%"><span class="c4">&nbsp;Mouth 12</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth19.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 13</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth20.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 14</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth21.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 15</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth22.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 16</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth17.jpg" width="100%"><span class="c4">&nbsp;Mouth 17</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth18.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth18</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth10.jpg" width="100%"><span class="c4">&nbsp;Mouth 19</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth05.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 20</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth07.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 21</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c1"><span class="c10"></span></p>
+               </td>
+               <td class="c43">
+                  <p class="c1"><span class="c10"></span></p>
+               </td>
+            </tr>
+         </tbody>
+      </table>
 
 <h2 id="viseme-usage-technique">Viseme Usage Technique</h2>
 
