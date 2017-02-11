@@ -28,3 +28,9 @@ An API key is a password that is required for access. To obtain an API key pleas
 ### View/Edit Keys
 
 Manage your API keys by using the [iSpeech developer website](http://www.ispeech.org/developers).  You can request additional features for your API keys on that website.
+
+### Request Parameter Reference
+
+Parameter | Data Type | Example Value
+---------- | ------- | -------
+Apikey | 32 character hex integer | **YOUR_KEY_HERE**

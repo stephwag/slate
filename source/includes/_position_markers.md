@@ -13,7 +13,6 @@ http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
 
 Parameter | Data Type | Example Value
 ---------- | ------- | -------
-Apikey | 32 character hex integer | abcdef1234567890abcdef1234567890
 Action | String | markers
 Text | String | Hello World
 Voice (optional) | String | usenglishfemale (default)

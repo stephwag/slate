@@ -1,20 +1,9 @@
 # Automated Speech Recognition
 
-## Transaction Types and URL Formats
-
-Transaction Type | Input Format | URL
----------- | ------- | -------
-HTTP GET/POST | URL Encoded | http://api.ispeech.org/api/rest
-HTTP GET/POST | XML | http://api.ispeech.org/api/xml
-HTTP GET/POST | JSON | http://api.ispeech.org/api/json
-
-There are currently three transaction types available for use with the iSpeech API.  All transactions must use the appropriate URL.
-
 ## Request Parameters
 
 Parameter | Data Type | Example Value
 ---------- | ------- | -------
-Apikey | 32 character hex integer | abcdef1234567890abcdef1234567890
 Locale | String | en-US
 Action | String | recognize
 Content-Type | String | audio/x-wav, audio/amr, audio/speex

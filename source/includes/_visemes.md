@@ -4,7 +4,6 @@
 
 Parameter | Data Type | Example Value
 ---------- | ------- | -------
-Apikey | 32 character hex integer | abcdef1234567890abcdef1234567890
 Action | String | viseme
 Text | String | Hello World
 Voice (optional) | String | usenglishfemale (default)
@@ -109,6 +108,110 @@ Viseme data is currently only presented in XML form.
 To obtain viseme information from the iSpeech API, you query the server in the same manner as a normal text-to-speech request. The only difference between a TTS request and a marker request is the “action” parameter, which is set to “convert” for audio, and “viseme” for viseme information.
 
 ## Viseme Chart
+
+<table cellpadding="0" cellspacing="0" class="c0">
+         <tbody>
+            <tr class="c60">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth08.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 0</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth09.jpg" width="100%"><span class="c4">&nbsp;Mouth 1</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth11.jpg" width="100%"><span class="c4">Mouth 2</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth12.jpg" width="100%"><span class="c4">Mouth 3</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth01.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 4</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth00.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 5</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth03.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 6</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth02.jpg" width="100%"><span class="c4">&nbsp;Mouth 7</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth04.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 8</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth13.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 9</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth14.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 10</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth15.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 11</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth16.jpg" width="100%"><span class="c4">&nbsp;Mouth 12</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth19.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 13</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth20.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 14</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth21.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 15</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth22.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 16</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth17.jpg" width="100%"><span class="c4">&nbsp;Mouth 17</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth18.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth18</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3 c38"><img height="100%" src="http://www.ispeech.org/images/mouth10.jpg" width="100%"><span class="c4">&nbsp;Mouth 19</span></p>
+               </td>
+            </tr>
+            <tr class="c6">
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth05.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 20</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c3"><img height="100%" src="http://www.ispeech.org/images/mouth07.jpg" width="100%"></p>
+                  <p class="c3 c38"><span class="c4">Mouth 21</span></p>
+               </td>
+               <td class="c43">
+                  <p class="c1"><span class="c10"></span></p>
+               </td>
+               <td class="c43">
+                  <p class="c1"><span class="c10"></span></p>
+               </td>
+            </tr>
+         </tbody>
+      </table>
 
 ## Viseme Usage Technique
 

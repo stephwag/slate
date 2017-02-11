@@ -1,7 +1,5 @@
 # Text to Speech
 
-The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You'll always receive audio data or an error message in the same HTTP transaction.
-
 > Example HTTP GET Request (Using most variables)
 
 ```shell
@@ -11,19 +9,12 @@ curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
 &pitch=110&filename=myaudiofile"
 ```
 
-## Transaction Types and URL Formats
-
-Transaction Type | Input Format | URL
----------- | ------- | -------
-HTTP GET/POST | URL Encoded | http://api.ispeech.org/api/rest
-HTTP GET/POST | XML | http://api.ispeech.org/api/xml
-HTTP GET/POST | JSON | http://api.ispeech.org/api/json
+The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You'll always receive audio data or an error message in the same HTTP transaction.
 
 ## Request Parameters
 
 Parameter | Data Type | Example Value
 ---------- | ------- | -------
-Apikey | 32 character hex integer | abcdef1234567890abcdef1234567890
 Action | String | convert, ssml
 Text | String | Hello World
 Ssml (optional) | String | <?xml version=”1.0” ?><speak version= […] |
