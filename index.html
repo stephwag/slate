@@ -310,8 +310,8 @@ Position Marker and Viseme data is currently only presented in XML form
 </tr>
 </thead><tbody>
 <tr>
-<td>output</td>
-<td>xml, json, rest</td>
+<td>output (optional)</td>
+<td>xml, json, rest (default)</td>
 </tr>
 </tbody></table>
 
@@ -320,10 +320,17 @@ Position Marker and Viseme data is currently only presented in XML form
 <blockquote>
 <p>Example HTTP GET Request (Using most variables)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3
-&amp;frequency=44100&amp;bitrate=128&amp;speed=1&amp;startpadding=1&amp;endpadding=1
-&amp;pitch=110&amp;filename=myaudiofile"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=mp3
+      &amp;frequency=44100
+      &amp;bitrate=128
+      &amp;speed=1
+      &amp;startpadding=1
+      &amp;endpadding=1
+      &amp;pitch=110
+      &amp;filename=myaudiofile"</span>
 </code></pre>
 <p>The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You&rsquo;ll always receive audio data or an error message in the same HTTP transaction.</p>
 
@@ -413,8 +420,10 @@ Position Marker and Viseme data is currently only presented in XML form
 <blockquote>
 <p>HTTP GET Request (Setting voice to European French Female)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;format=mp3&amp;voice=eurfrenchfemale"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;format=mp3
+      &amp;voice=eurfrenchfemale"</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -621,8 +630,7 @@ Position Marker and Viseme data is currently only presented in XML form
 <blockquote>
 <p>HTTP GET Network Transaction to get XML voice list.</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=information&amp;output=(xml, rest, or json)"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=information&amp;output=xml"</span>
 </code></pre>
 <blockquote>
 <p>XML Response</p>
@@ -660,29 +668,32 @@ Position Marker and Viseme data is currently only presented in XML form
 <blockquote>
 <p>REST / URL Encoded Response</p>
 </blockquote>
-<pre class="highlight shell"><code><span class="s2">"result=success&amp;voice-1=krkoreanfemale2&amp;voice-locale-1-1=ko-kr&amp;voice-gender-1=female&amp;voice-description-1=Korean+Female+Voice&amp;voice-2=eurfinnishfemale&amp;voice-locale-2-1=fi-fi&amp;voice-gender-2=female&amp;voice-description-2=Finnish+Female+Voice&amp;voice-3=chchinesemale1&amp;voice-locale-3-1=zh&amp;voice-locale-3-2=zh-hk[...more voices...]"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?result=success
+      &amp;voice-1=krkoreanfemale2
+      &amp;voice-locale-1-1=ko-kr
+      &amp;voice-gender-1=female
+      &amp;voice-description-1=Korean+Female+Voice
+      &amp;voice-2=eurfinnishfemale
+      &amp;voice-locale-2-1=fi-fi
+      &amp;voice-gender-2=female
+      &amp;voice-description-2=Finnish+Female+Voice
+      &amp;voice-3=chchinesemale1
+      &amp;voice-locale-3-1=zh
+      &amp;voice-locale-3-2=zh-hk
+      &amp;[...more voices...]"</span>
 </code></pre>
 <p>A current list of voices that are enabled for an API key can be retrieved in REST, JSON, and XML format by using the following service.  HTTP GET and POST are supported.  A web browser or a REST client can be used to make these HTTP requests.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Supported Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>output</td>
-<td>xml, json, rest</td>
-</tr>
-</tbody></table>
 
 <h2 id="speed">Speed</h2>
 
 <blockquote>
 <p>HTTP GET Request (Setting speed to 5)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3&amp;speed=5"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=mp3
+      &amp;speed=5"</span>
 </code></pre>
 <p>Most voices support speed controls.</p>
 
@@ -719,8 +730,11 @@ Position Marker and Viseme data is currently only presented in XML form
 <blockquote>
 <p>HTTP GET Request (Setting bitrate to 16 kilobits per second)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=mp3&amp;bitrate=16"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=mp3
+      &amp;bitrate=16"</span>
 </code></pre>
 <h3 id="note-bitrates-can-only-be-selected-for-mp3s">Note: Bitrates can only be selected for MP3s.</h3>
 
@@ -732,8 +746,10 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting format to wav)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=wav"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=wav"</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -788,8 +804,10 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting frequency to 16000 Hz)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;frequency=16000"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;frequency=16000"</span>
 </code></pre>
 <p>Possible values: 8000, 11025, 16000 (default), 22050, 24000, 32000, 44100, 48000 cycles per second (Hertz)</p>
 
@@ -802,8 +820,10 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting start padding to 3 seconds)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;startpadding=3"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;startpadding=3"</span>
 </code></pre>
 <p>Adds a period of silence to the beginning of the audio file.</p>
 
@@ -812,8 +832,10 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting end padding to 3 seconds)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;endpadding=3"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;endpadding=3"</span>
 </code></pre>
 <p>Adds a period of silence to the beginning of the audio file.</p>
 
@@ -822,8 +844,10 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting pitch to 50)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;pitch=50"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;pitch=50"</span>
 </code></pre>
 <p>Possible values: 0 to 200 (integer), 0 is lowest pitch, 100 is default, 200 is highest pitch. Pitch is enabled only on some voices.</p>
 
@@ -832,9 +856,11 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting bit depth to 8)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=wav
-&amp;bitdepth=8"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=wav
+      &amp;bitdepth=8"</span>
 </code></pre>
 <p>The bit depth is amount of audio detail for each audio sample.  </p>
 
@@ -845,9 +871,11 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Setting filename of audio)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&amp;action=convert&amp;text=something&amp;voice=usenglishfemale&amp;format=wav
-&amp;filename=myaudiofile"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=wav
+      &amp;filename=myaudiofile"</span>
 </code></pre>
 <p>The filename is the name of the audio file that will download.  Specifying the extension is optional.  If the extension is missing, the correct extension will be added automatically.  The default is rest.[extension], for example:  rest.mp3.</p>
 
@@ -856,16 +884,16 @@ Bitrates are listed in kilobits per second.</p>
 <blockquote>
 <p>Example HTTP GET Request (Emphasis added on the word big)</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?apikey=YOUR_API_KEY_HERE&amp;
-action=ssml&amp;ssml=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cspeak
-%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org
-%2F2001%2F10%2Fsynthesis%22%20xmlns%3Axsi%3D%22http%3A%2F%2F
-www.w3.org%2F2001%2FXMLSchema-instance%22
-%20xsi%3AschemaLocation%3D%22http%3A%2F%2Fwww.w3.org%2F2001
-%2F10%2Fsynthesis%20http%3A%2F%2Fwww.w3.org%2FTR%2Fspeech-synthesis
-%2Fsynthesis.xsd%22%20xml%3Alang%3D%22en-US%22%3E
-That%20is%20a%20%3Cemphasis%3E%20big%20%3C%2Femphasis%3E%20car!
-%3C%2Fspeak%3E"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?
+      action=ssml&amp;ssml=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cspeak
+      %20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org
+      %2F2001%2F10%2Fsynthesis%22%20xmlns%3Axsi%3D%22http%3A%2F%2F
+      www.w3.org%2F2001%2FXMLSchema-instance%22
+      %20xsi%3AschemaLocation%3D%22http%3A%2F%2Fwww.w3.org%2F2001
+      %2F10%2Fsynthesis%20http%3A%2F%2Fwww.w3.org%2FTR%2Fspeech-synthesis
+      %2Fsynthesis.xsd%22%20xml%3Alang%3D%22en-US%22%3E
+      That%20is%20a%20%3Cemphasis%3E%20big%20%3C%2Femphasis%3E%20car!
+      %3C%2Fspeak%3E"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -891,9 +919,9 @@ The parameter “action” must set to “ssml” and the parameter “ssml” m
 
 <h2 id="math-markup-language-mathml">Math Markup Language (MathML)</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
-&amp;apikey=YOUR_API_KEY_HERE&amp;library=libmath
-&amp;text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
-%3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"</span>
+      &amp;library=libmath
+      &amp;text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
+      %3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -967,119 +995,134 @@ Audio synthesized as, “positive 7” instead of plus 7.
 <blockquote>
 <p>HTTP POST URL encoded request for Text to Speech</p>
 </blockquote>
-<pre class="highlight shell"><code>POST /api/rest HTTP/1.1
-Content-Length: 71
-Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-<span class="nv">apikey</span><span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>convert&amp;text<span class="o">=</span>hello+world
-</code></pre>
-<blockquote>
-<p>HTTP Response</p>
-</blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 200 OK
-Connection: close
-Server: iSpeech Cloud/1.2
-Accept-Ranges: none
-X-Time-Length: 3853
-X-Content-Hash: e969ef3dd0dc0e9c417f31f7ffbd10ed
-Content-Length: 23760
-Content-Type: audio/mpeg
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="o">[</span>mp3 binary audio data]
+<pre class="highlight shell"><code>curl -X POST -d <span class="s2">"action=convert&amp;text=hello+world"</span> <span class="s2">"http://api.ispeech.org/api/rest"</span>
 </code></pre>
 <blockquote>
 <p>HTTP POST JSON request for Text to Speech</p>
 </blockquote>
-<pre class="highlight shell"><code>POST /api/json HTTP/1.1
-Content-Length: 111
-Content-Type: application/json; <span class="nv">charset</span><span class="o">=</span>UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-<span class="o">{</span><span class="s2">"apikey"</span>:<span class="s2">"developerdemokeydeveloperdemokey"</span>,<span class="s2">"action"</span>:<span class="s2">"convert"</span>,<span class="s2">"text"</span>:<span class="s2">"hello world"</span>,<span class="s2">"voice"</span>:<span class="s2">"usenglishfemale"</span><span class="o">}</span>
-</code></pre>
-<blockquote>
-<p>HTTP Response</p>
-</blockquote>
-<pre class="highlight shell"><code>Connection: close
-Server: iSpeech Cloud/1.2
-Accept-Ranges: none
-X-Time-Length: 3853
-X-Content-Hash: e969ef3dd0dc0e9c417f31f7ffbd10ed
-Content-Length: 23760
-Content-Type: audio/mpeg
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="o">[</span>mp3 audio binary data]
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/json"</span>
+    -d <span class="s1">'{"action":"convert","text":"hello world","voice":"usenglishfemale"}'</span>
+    <span class="s2">"http://api.ispeech.org/api/json"</span>
 </code></pre>
 <blockquote>
 <p>HTTP POST XML request for Text to Speech</p>
 </blockquote>
-<pre class="highlight xml"><code>POST /api/xml HTTP/1.1
-Content-Length: 150
-Content-Type: application/xml; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-<span class="nt">&lt;data&gt;</span>
-<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
-<span class="nt">&lt;action&gt;</span>convert<span class="nt">&lt;/action&gt;</span>
-<span class="nt">&lt;text&gt;</span>hello world<span class="nt">&lt;/text&gt;</span>
-<span class="nt">&lt;voice&gt;</span>usenglishfemale<span class="nt">&lt;/voice&gt;</span>
-<span class="nt">&lt;/data&gt;</span>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/xml"</span>
+-d <span class="s2">"&lt;data&gt;
+    &lt;apikey&gt;developerdemokeydeveloperdemokey&lt;/apikey&gt;
+    &lt;action&gt;convert&lt;/action&gt;
+    &lt;text&gt;hello world&lt;/text&gt;
+    &lt;voice&gt;usenglishfemale&lt;/voice&gt;
+    &lt;/data&gt;"</span> <span class="s2">"http://api.ispeech.org/api/xml"</span>
 </code></pre>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 200 OK
-Connection: close
-Server: iSpeech Cloud/1.2
-Accept-Ranges: none
-X-Time-Length: 3853
-X-Content-Hash: 4affe15913fccd851ebf08a7e2650955
-Content-Length: 23760
-Content-Type: audio/mpeg
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="o">[</span>mp3 audio binary data]
+<pre class="highlight shell"><code><span class="o">[</span>mp3 audio binary data]
 </code></pre>
 <blockquote>
 <p>Example of a text-to-speech network transaction with an error. 
 Responses with an error message return HTTP status response code “HTTP/1.0 202 Accepted”.</p>
 </blockquote>
-<pre class="highlight shell"><code>GET /api/rest?apikey<span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>convert&amp;
-<span class="nv">text</span><span class="o">=</span>something&amp;output<span class="o">=</span>rest&amp;voice<span class="o">=</span>usenglishfemal HTTP/1.1
-Host: api.ispeech.org
-Connection: keep-alive
-User-Agent: Mozilla/5.0 <span class="o">(</span>Windows NT 6.1; WOW64<span class="o">)</span> AppleWebKit/535.2 <span class="o">(</span>KHTML, like Gecko<span class="o">)</span> Chrome/15.0.874.58 Safari/535.2
-Accept: text/html,application/xhtml+xml,application/xml;q<span class="o">=</span>0.9,<span class="k">*</span>/<span class="k">*</span>;<span class="nv">q</span><span class="o">=</span>0.8
-Accept-Encoding: gzip,deflate,sdch
-Accept-Language: en-US,en;q<span class="o">=</span>0.8
-Accept-Charset: ISO-8859-1,utf-8;q<span class="o">=</span>0.7,<span class="k">*</span>;<span class="nv">q</span><span class="o">=</span>0.3
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;output=rest
+      &amp;voice=usenglishfemal"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 202 Accepted
-Server: iSpeech Cloud/1.2
-Connection: close
-Content-Length: 41
-Content-Type: text/plain
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0,
-proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="nv">result</span><span class="o">=</span>error&amp;code<span class="o">=</span>8&amp;message<span class="o">=</span>Invalid+voice
+<pre class="highlight shell"><code><span class="nv">result</span><span class="o">=</span>error&amp;code<span class="o">=</span>8&amp;message<span class="o">=</span>Invalid+voice
 </code></pre>
 <p>The following examples are packet captures from TCP connections that used the HTTP protocol.  You can compare your network traffic to these transactions to debug code.  Wireshark can be used to analyze network connections.  A REST client can be used to make these HTTP requests.</p>
 
 <h2 id="example-network-transactions-containing-mathml">Example network transactions containing MathML</h2>
+
+<blockquote>
+<p>HTTP GET, URL Encoded Request and Reply, +7 (says positive 7)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;voice=usenglishfemale
+      &amp;library=libmath
+      &amp;format=mp3
+      &amp;text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
+      %3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"</span>
+</code></pre>
+<blockquote>
+<p>HTTP POST JSON Text-to-Speech request containing MathML</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/json"</span>
+  -d <span class="s1">'{"action":"convert",
+  "text":"&lt;mrow&gt;&lt;mtext&gt;&lt;sup&gt;-&lt;/sup&gt;&lt;/mtext&gt;&lt;span mtagname=\"mfrac\"&gt;
+  &lt;span class=\"fm-vert fm-frac\"&gt;
+  &lt;table&gt;&lt;tbody&gt;
+  &lt;tr&gt;&lt;td class=\"fm-num-frac fm-inline\"&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td class=\"fm-den-frac fm-inline\"&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;&lt;/table&gt;
+  &lt;/span&gt;&lt;/span&gt;&lt;/mrow&gt;",
+  "voice":"usenglishfemale",
+  "library":"libmath"}'</span> <span class="s2">"http://api.ispeech.org/api/json"</span>
+</code></pre>
+<blockquote>
+<p>HTTP POST XML Text-to-Speech request containing MathML (The text: “+7” gets spoken as “positive seven”)</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/xml"</span>
+  -d <span class="s2">"&lt;data&gt;
+  &lt;action&gt;convert&lt;/action&gt;
+  &lt;text&gt;&amp;lt;msup&amp;gt;&amp;lt;mn&amp;gt;10&amp;lt;/mn&amp;gt;&amp;lt;span class=&amp;quot;fm-script fm-inline&amp;quot;&amp;gt;&amp;lt;mn&amp;gt;3&amp;lt;/mn&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/msup&amp;gt;&lt;/text&gt;
+  &lt;library&gt;libmath&lt;/library&gt;
+  &lt;voice&gt;usenglishfemale&lt;/voice&gt;
+  &lt;/data&gt;"</span> <span class="s2">"http://api.ispeech.org/api/xml"</span>
+
+<span class="gp">&gt; </span>Response
+
+<span class="sb">```</span>shell
+<span class="o">[</span>...mp3 binary data...]
+</code></pre>
+<p>The following examples are packet captures from TCP connections that used the HTTP protocol.  You can compare your network traffic to these transactions to debug code.  Wireshark can be used to analyze network connections.  A REST client can be used to make these HTTP requests.</p>
+
+<p>More information on MathML is available on http://www.w3.org/TR/MathML2/ and https://developer.mozilla.org/en-US/docs/MathML</p>
+
+<h3 id="http-get-url-encoded-text-to-speech-request-containing-mathml">HTTP GET URL encoded Text-to-Speech request containing MathML</h3>
+
+<table><thead>
+<tr>
+<th>URL encoded Request Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Text: “+7” (says, positive seven)</td>
+</tr>
+<tr>
+<td>MathML used: <code class="prettyprint">&lt;mrow&gt;&lt;mtext&gt;&lt;sup&gt;+&lt;/sup&gt;&lt;/mtext&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;/mrow&gt;</code></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>POST JSON Request Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Text: “-3/5” (says, negative three fifths)</td>
+</tr>
+<tr>
+<td>MathML used: <code class="prettyprint">&lt;mrow&gt;&lt;mtext&gt;&lt;sup&gt;-&lt;/sup&gt;&lt;/mtext&gt;&lt;span mtagname=&quot;mfrac&quot;&gt;&lt;span class=&quot;fm-vert fm-frac&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;fm-num-frac fm-inline&quot;&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;fm-den-frac fm-inline&quot;&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/span&gt;&lt;/span&gt;&lt;/mrow&gt;</code></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>POST XML Request Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Text: “10^3” (says, 10 to the power of 3)</td>
+</tr>
+<tr>
+<td>Math ML: <code class="prettyprint">&lt;msup&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;span class=&quot;fm-script fm-inline&quot;&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/span&gt;&lt;/msup&gt;</code></td>
+</tr>
+</tbody></table>
 
 <h2 id="errors">Errors</h2>
 
@@ -1540,83 +1583,38 @@ Pragma: no-cache
 <blockquote>
 <p>HTTP REST Request for Speech Recognition</p>
 </blockquote>
-<pre class="highlight shell"><code>POST /api/rest HTTP/1.1
-Content-Length: 34875
-Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-<span class="nv">apikey</span><span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>recognize&amp;freeform<span class="o">=</span>1&amp;content-type<span class="o">=</span>audio/x-wav&amp;output<span class="o">=</span>rest&amp;locale<span class="o">=</span>en-us&amp;audio<span class="o">=[</span>base64 encoded something.wav without <span class="se">\r\n</span> characters]
-</code></pre>
-<blockquote>
-<p>HTTP Response</p>
-</blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 59
-Content-Type: text/plain
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="nv">text</span><span class="o">=</span>something&amp;confidence<span class="o">=</span>0.0216270890086889&amp;result<span class="o">=</span>success
+<pre class="highlight shell"><code>curl -X POST -d <span class="s2">"action=recognize&amp;freeform=1&amp;content-type=audio/x-wav&amp;output=rest&amp;locale=en-us&amp;audio=[base64 encoded something.wav without </span><span class="se">\r\n</span><span class="s2"> characters]"</span> <span class="s2">"http://api.ispeech.org/api/rest"</span>
 </code></pre>
 <blockquote>
 <p>HTTP JSON Request for Speech Recognition</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/json</span><span class="w"> </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w">
-</span><span class="err">Content-Length:</span><span class="w"> </span><span class="mi">34897</span><span class="w">
-</span><span class="err">Content-Type:</span><span class="w"> </span><span class="err">text/plain;</span><span class="w"> </span><span class="err">charset=UTF</span><span class="mi">-8</span><span class="w">
-</span><span class="err">Host:</span><span class="w"> </span><span class="err">api.ispeech.org</span><span class="w">
-</span><span class="err">Connection:</span><span class="w"> </span><span class="err">Keep-Alive</span><span class="w">
-
-</span><span class="p">{</span><span class="nt">"apikey"</span><span class="p">:</span><span class="s2">"developerdemokeydeveloperdemokey"</span><span class="p">,</span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"recognize"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"freeform"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"locale"</span><span class="p">:</span><span class="s2">"en-us"</span><span class="p">,</span><span class="w"> </span><span class="nt">"content-type"</span><span class="p">:</span><span class="s2">"audio/x-wav"</span><span class="p">,</span><span class="w"> </span><span class="nt">"output"</span><span class="p">:</span><span class="s2">"rest"</span><span class="p">,</span><span class="w"> </span><span class="nt">"audio"</span><span class="p">:</span><span class="err">"</span><span class="p">[</span><span class="err">base</span><span class="mi">64</span><span class="w"> </span><span class="err">encoded</span><span class="w"> </span><span class="err">something.wav</span><span class="w"> </span><span class="err">without</span><span class="w"> </span><span class="err">\r\n</span><span class="w"> </span><span class="err">characters</span><span class="p">]</span><span class="err">”</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/json"</span>
+  -d <span class="s1">'{"apikey":"developerdemokeydeveloperdemokey","action":"recognize",
+  "freeform":"1", "locale":"en-us", "content-type":"audio/x-wav", "output":"rest", "audio":"[base64 encoded something.wav without \r\n characters]”}'</span> <span class="s2">"http://api.ispeech.org/api/json"</span>
+</code></pre>
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 59
-Content-Type: application/json
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="nv">text</span><span class="o">=</span>something&amp;confidence<span class="o">=</span>0.0134419081732631&amp;result<span class="o">=</span>success
+<pre class="highlight shell"><code><span class="nv">text</span><span class="o">=</span>something&amp;confidence<span class="o">=</span>0.0134419081732631&amp;result<span class="o">=</span>success
 </code></pre>
 <blockquote>
 <p>HTTP XML network request for Speech Recognition</p>
 </blockquote>
-<pre class="highlight xml"><code>
-POST /api/xml HTTP/1.1
-Content-Length: 34953
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.0.1 (java 1.5)
-Expect: 100-Continue
-
-<span class="nt">&lt;data&gt;</span>
-<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
-<span class="nt">&lt;action&gt;</span>recognize<span class="nt">&lt;/action&gt;</span>
-<span class="nt">&lt;freeform&gt;</span>1<span class="nt">&lt;/freeform&gt;</span>
-<span class="nt">&lt;locale&gt;</span>en-us<span class="nt">&lt;/locale&gt;</span>
-<span class="nt">&lt;content-type&gt;</span>audio/x-wav<span class="nt">&lt;/content-type&gt;</span>
-<span class="nt">&lt;output&gt;</span>xml<span class="nt">&lt;/output&gt;</span>
-<span class="nt">&lt;audio&gt;</span>[base64 encoded something.wav without \r\n characters]<span class="nt">&lt;/audio&gt;</span>
-<span class="nt">&lt;/data&gt;</span>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/xml"</span>
+  -d <span class="s2">"&lt;data&gt;
+      &lt;apikey&gt;developerdemokeydeveloperdemokey&lt;/apikey&gt;
+      &lt;action&gt;recognize&lt;/action&gt;
+      &lt;freeform&gt;1&lt;/freeform&gt;
+      &lt;locale&gt;en-us&lt;/locale&gt;
+      &lt;content-type&gt;audio/x-wav&lt;/content-type&gt;
+      &lt;output&gt;xml&lt;/output&gt;
+      &lt;audio&gt;[base64 encoded something.wav without </span><span class="se">\r\n</span><span class="s2"> characters]&lt;/audio&gt;
+      &lt;/data&gt;"</span> <span class="s2">"http://api.ispeech.org/api/xml"</span>
 </code></pre>
 <blockquote>
 <p>XML Response</p>
 </blockquote>
-<pre class="highlight xml"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 140
-Content-Type: text/xml
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;data&gt;</span>
 <span class="nt">&lt;text&gt;</span>something<span class="nt">&lt;/text&gt;</span>
 <span class="nt">&lt;confidence&gt;</span>0.0216270890086889<span class="nt">&lt;/confidence&gt;</span>
@@ -1636,35 +1634,23 @@ Pragma: no-cache
 <blockquote>
 <p>HTTP XML network request to detect commands from a list</p>
 </blockquote>
-<pre class="highlight xml"><code>POST /api/xml HTTP/1.1
-Content-Length: 80941
-Content-Type: text/xml; charset=UTF-8
-Host: api.ispeech.org
-Expect: 100-Continue
-
-<span class="nt">&lt;data&gt;</span>
-<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
-<span class="nt">&lt;action&gt;</span>recognize<span class="nt">&lt;/action&gt;</span>
-<span class="nt">&lt;locale&gt;</span>en-US<span class="nt">&lt;/locale&gt;</span>
-<span class="nt">&lt;output&gt;</span>xml<span class="nt">&lt;/output&gt;</span>
-<span class="nt">&lt;alias&gt;</span>command1|YESNOMAYBE<span class="nt">&lt;/alias&gt;</span>
-<span class="nt">&lt;YESNOMAYBE&gt;</span>yes|no|maybe<span class="nt">&lt;/YESNOMAYBE&gt;</span>
-<span class="nt">&lt;command1&gt;</span>say %YESNOMAYBE%<span class="nt">&lt;/command1&gt;</span>
-<span class="nt">&lt;content-type&gt;</span>audio/x-wav<span class="nt">&lt;/content-type&gt;</span>
-<span class="nt">&lt;audio&gt;</span>[base64 encoded say_yes.wav without \r\n characters]<span class="nt">&lt;/audio&gt;</span>
-<span class="nt">&lt;/data&gt;</span>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/xml"</span>
+-d <span class="s2">"&lt;data&gt;
+    &lt;apikey&gt;developerdemokeydeveloperdemokey&lt;/apikey&gt;
+    &lt;action&gt;recognize&lt;/action&gt;
+    &lt;locale&gt;en-US&lt;/locale&gt;
+    &lt;output&gt;xml&lt;/output&gt;
+    &lt;alias&gt;command1|YESNOMAYBE&lt;/alias&gt;
+    &lt;YESNOMAYBE&gt;yes|no|maybe&lt;/YESNOMAYBE&gt;
+    &lt;command1&gt;say %YESNOMAYBE%&lt;/command1&gt;
+    &lt;content-type&gt;audio/x-wav&lt;/content-type&gt;
+    &lt;audio&gt;[base64 encoded say_yes.wav without </span><span class="se">\r\n</span><span class="s2"> characters]&lt;/audio&gt;
+    &lt;/data&gt;"</span> <span class="s2">"http://api.ispeech.org/api/xml"</span>
 </code></pre>
 <blockquote>
 <p>XML Response</p>
 </blockquote>
-<pre class="highlight xml"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 137
-Content-Type: text/xml
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;data&gt;</span>
 <span class="nt">&lt;text&gt;</span>say yes<span class="nt">&lt;/text&gt;</span>
 <span class="nt">&lt;confidence&gt;</span>0.726751327514648<span class="nt">&lt;/confidence&gt;</span>
@@ -1674,90 +1660,51 @@ Pragma: no-cache
 <blockquote>
 <p>HTTP REST network request to detect commands from a list</p>
 </blockquote>
-<pre class="highlight shell"><code>POST /api/rest/ HTTP/1.1
-Content-Length: 72682
-Content-Type: text/plain; <span class="nv">charset</span><span class="o">=</span>UTF-8
-Host: api.ispeech.org
-Expect: 100-Continue
-
-<span class="nv">apikey</span><span class="o">=</span>developerdemokeydeveloperdemokey&amp;action<span class="o">=</span>recognize&amp;locale<span class="o">=</span>en-us&amp;content-type<span class="o">=</span>audio%2Fwav&amp;output<span class="o">=</span>rest&amp;alias<span class="o">=</span>command1|NAMES
-&amp;NAMES<span class="o">=</span>john|mary|anna&amp;command1<span class="o">=</span>call%20%25NAMES%25&amp;audio<span class="o">=[</span>base64 encoded wav without <span class="se">\r\n</span> characters]
+<pre class="highlight shell"><code>curl -X POST -d <span class="s2">"action=recognize&amp;locale=en-us&amp;content-type=audio%2Fwav&amp;output=rest&amp;alias=command1|NAMES
+&amp;NAMES=john|mary|anna&amp;command1=call%20%25NAMES%25&amp;audio=[base64 encoded wav without </span><span class="se">\r\n</span><span class="s2"> characters]"</span> <span class="s2">"http://api.ispeech.org/api/rest"</span>
 </code></pre>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 58
-Content-Type: text/plain
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="nv">text</span><span class="o">=</span>call+mary&amp;confidence<span class="o">=</span>0.672464966773987&amp;result<span class="o">=</span>success
+<pre class="highlight shell"><code><span class="nv">text</span><span class="o">=</span>call+mary&amp;confidence<span class="o">=</span>0.672464966773987&amp;result<span class="o">=</span>success
 </code></pre>
 <blockquote>
 <p>HTTP POST JSON request to detect commands from a list</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">POST</span><span class="w"> </span><span class="err">/api/json/</span><span class="w"> </span><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w">
-</span><span class="err">Content-Length:</span><span class="w"> </span><span class="mi">22788</span><span class="w">
-</span><span class="err">Content-Type:</span><span class="w"> </span><span class="err">text/plain;</span><span class="w"> </span><span class="err">charset=UTF</span><span class="mi">-8</span><span class="w">
-</span><span class="err">Host:</span><span class="w"> </span><span class="err">api.ispeech.org</span><span class="w">
-</span><span class="err">Expect:</span><span class="w"> </span><span class="mi">100</span><span class="err">-Continue</span><span class="w">
-
-</span><span class="p">{</span><span class="nt">"apikey"</span><span class="p">:</span><span class="s2">"developerdemokeydeveloperdemokey"</span><span class="p">,</span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"recognize"</span><span class="p">,</span><span class="nt">"locale"</span><span class="p">:</span><span class="s2">"en-US"</span><span class="p">,</span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">"command1|YESNOMAYBE"</span><span class="p">,</span><span class="nt">"YESNOMAYBE"</span><span class="p">:</span><span class="s2">"yes|no|maybe"</span><span class="p">,</span><span class="nt">"command1"</span><span class="p">:</span><span class="s2">"say %YESNOMAYBE%"</span><span class="p">,</span><span class="nt">"content-type"</span><span class="p">:</span><span class="s2">"audio/x-wav"</span><span class="p">,</span><span class="nt">"output"</span><span class="p">:</span><span class="s2">"rest"</span><span class="p">,</span><span class="nt">"audio"</span><span class="p">:</span><span class="s2">"[base64 encoded say_yes.wav without \r\n characters]"</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/json"</span>
+-d <span class="s1">'{"action":"recognize","locale":"en-US","alias":"command1|YESNOMAYBE","YESNOMAYBE":"yes|no|maybe","command1":"say %YESNOMAYBE%","content-type":"audio/x-wav","output":"rest","audio":"[base64 encoded say_yes.wav without \r\n characters]"}'</span> <span class="s2">"http://api.ispeech.org/api/json"</span>
+</code></pre>
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight shell"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 56
-Content-Type: application/json
-Cache-Control: no-cache, no-store, must-revalidate, max-age<span class="o">=</span>0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="nv">text</span><span class="o">=</span>say+yes&amp;confidence<span class="o">=</span>0.726751327514648&amp;result<span class="o">=</span>success
+<pre class="highlight shell"><code><span class="nv">text</span><span class="o">=</span>say+yes&amp;confidence<span class="o">=</span>0.726751327514648&amp;result<span class="o">=</span>success
 </code></pre>
 <blockquote>
 <p>Advanced Example, HTTP POST XML request to detect multiple audio commands from multiple lists</p>
 </blockquote>
-<pre class="highlight xml"><code>POST /api/xml HTTP/1.1
-Content-Length: 91393
-Content-Type: text/xml; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-Expect: 100-Continue
-
-<span class="nt">&lt;data&gt;</span>
-<span class="nt">&lt;apikey&gt;</span>developerdemokeydeveloperdemokey<span class="nt">&lt;/apikey&gt;</span>
-<span class="nt">&lt;action&gt;</span>recognize<span class="nt">&lt;/action&gt;</span>
-<span class="nt">&lt;locale&gt;</span>en-us<span class="nt">&lt;/locale&gt;</span>
-<span class="nt">&lt;content-type&gt;</span>audio/x-wav<span class="nt">&lt;/content-type&gt;</span>
-<span class="nt">&lt;output&gt;</span>xml<span class="nt">&lt;/output&gt;</span>
-<span class="nt">&lt;alias&gt;</span>command1|command2|MONITORACTIONS|COLORLIST|
-DYNAMITEACTIONS|OBJECTLIST<span class="nt">&lt;/alias&gt;</span>
-<span class="nt">&lt;MONITORACTIONS&gt;</span>on|off|reset<span class="nt">&lt;/MONITORACTIONS&gt;</span>
-<span class="nt">&lt;COLORLIST&gt;</span>blue|green|red|yellow|purple|orange|black|white|cyan<span class="nt">&lt;/COLORLIST&gt;</span>
-<span class="nt">&lt;DYNAMITEACTIONS&gt;</span>explode|fizzle out<span class="nt">&lt;/DYNAMITEACTIONS&gt;</span>
-<span class="nt">&lt;OBJECTLIST&gt;</span>monitor %MONITORACTIONS%|color %COLORLIST%|dynamite  %DYNAMITEACTIONS%<span class="nt">&lt;/OBJECTLIST&gt;</span>
-<span class="nt">&lt;command1&gt;</span>set %OBJECTLIST%<span class="nt">&lt;/command1&gt;</span>
-<span class="nt">&lt;command2&gt;</span>quit menu<span class="nt">&lt;/command2&gt;</span>
-<span class="nt">&lt;audio&gt;</span>[base64 encoded set_dynamite_explode.wav
-without \r\n characters]<span class="nt">&lt;/audio&gt;</span>
-<span class="nt">&lt;/data&gt;</span>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type:application/xml"</span>
+  -d <span class="s2">"&lt;data&gt;
+      &lt;apikey&gt;developerdemokeydeveloperdemokey&lt;/apikey&gt;
+      &lt;action&gt;recognize&lt;/action&gt;
+      &lt;locale&gt;en-us&lt;/locale&gt;
+      &lt;content-type&gt;audio/x-wav&lt;/content-type&gt;
+      &lt;output&gt;xml&lt;/output&gt;
+      &lt;alias&gt;command1|command2|MONITORACTIONS|COLORLIST|
+      DYNAMITEACTIONS|OBJECTLIST&lt;/alias&gt;
+      &lt;MONITORACTIONS&gt;on|off|reset&lt;/MONITORACTIONS&gt;
+      &lt;COLORLIST&gt;blue|green|red|yellow|purple|orange|black|white|cyan&lt;/COLORLIST&gt;
+      &lt;DYNAMITEACTIONS&gt;explode|fizzle out&lt;/DYNAMITEACTIONS&gt;
+      &lt;OBJECTLIST&gt;monitor %MONITORACTIONS%|color %COLORLIST%|dynamite  %DYNAMITEACTIONS%&lt;/OBJECTLIST&gt;
+      &lt;command1&gt;set %OBJECTLIST%&lt;/command1&gt;
+      &lt;command2&gt;quit menu&lt;/command2&gt;
+      &lt;audio&gt;[base64 encoded set_dynamite_explode.wav
+      without </span><span class="se">\r\n</span><span class="s2"> characters]&lt;/audio&gt;
+      &lt;/data&gt;"</span> <span class="s2">"http://api.ispeech.org/api/xml"</span>
 </code></pre>
 <blockquote>
 <p>XML Response</p>
 </blockquote>
-<pre class="highlight xml"><code>HTTP/1.0 200 OK
-Connection: close
-Content-Length: 150
-Content-Type: text/xml
-Cache-Control: no-cache, no-store, must-revalidate,
-max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><span class="nt">&lt;data&gt;&lt;text&gt;</span>set dynamite explode<span class="nt">&lt;/text&gt;&lt;confidence&gt;</span>0.589247465133667<span class="nt">&lt;/confidence&gt;</span>
+<pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><span class="nt">&lt;data&gt;&lt;text&gt;</span>set dynamite explode<span class="nt">&lt;/text&gt;&lt;confidence&gt;</span>0.589247465133667<span class="nt">&lt;/confidence&gt;</span>
 <span class="nt">&lt;result&gt;</span>success<span class="nt">&lt;/result&gt;&lt;/data&gt;</span>
 </code></pre>
 <aside class="success">
@@ -1879,10 +1826,17 @@ If a user speaks &ldquo;set monitor on&rdquo;, ”set monitor off”, or “set 
 <blockquote>
 <p>Example HTTP GET Request (Using most variables)</p>
 </blockquote>
-<pre class="highlight shell"><code>http://api.ispeech.org/api/rest?apikey<span class="o">=</span>developerdemokeydeveloperdemokey
-&amp;action<span class="o">=</span>convert&amp;text<span class="o">=</span>something&amp;voice<span class="o">=</span>usenglishfemale&amp;format<span class="o">=</span>mp3
-&amp;frequency<span class="o">=</span>44100&amp;bitrate<span class="o">=</span>128&amp;speed<span class="o">=</span>1&amp;startpadding<span class="o">=</span>1&amp;endpadding<span class="o">=</span>1
-&amp;pitch<span class="o">=</span>110&amp;filename<span class="o">=</span>myaudiofile
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=convert
+      &amp;text=something
+      &amp;voice=usenglishfemale
+      &amp;format=mp3
+      &amp;frequency=44100
+      &amp;bitrate=128
+      &amp;speed=1
+      &amp;startpadding=1
+      &amp;endpadding=1
+      &amp;pitch=110
+      &amp;filename=myaudiofile"</span>
 </code></pre>
 <table><thead>
 <tr>
@@ -1936,15 +1890,10 @@ If a user speaks &ldquo;set monitor on&rdquo;, ”set monitor off”, or “set 
 
 <h2 id="example-transactions-for-position-markers">Example Transactions for Position Markers</h2>
 
-<h3 id="note-marker-data-is-currently-only-presented-in-xml-form">Note: Marker data is currently only presented in XML form.</h3>
-
-<p>To obtain marker information from the iSpeech API, you query the server in the same manner as a normal text-to-speech request. The only difference between a TTS request and a marker request is the “action” parameter, which is set to “convert” for audio, and “markers” for marker information.</p>
-
 <blockquote>
 <p>HTTP GET network transaction to retrieve position markers</p>
 </blockquote>
-<pre class="highlight shell"><code>http://api.ispeech.org/api/rest?apikey<span class="o">=</span>YOUR_API_KEY&amp;action<span class="o">=</span>markers
-&amp;text<span class="o">=</span>hello+world
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=markers&amp;text=hello+world"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -1971,6 +1920,10 @@ If a user speaks &ldquo;set monitor on&rdquo;, ”set monitor off”, or “set 
     <span class="nt">&lt;/word&gt;</span>
 <span class="nt">&lt;/markers&gt;</span>
 </code></pre>
+<h3 id="note-marker-data-is-currently-only-presented-in-xml-form">Note: Marker data is currently only presented in XML form.</h3>
+
+<p>To obtain marker information from the iSpeech API, you query the server in the same manner as a normal text-to-speech request. The only difference between a TTS request and a marker request is the “action” parameter, which is set to “convert” for audio, and “markers” for marker information.</p>
+
 <h2 id="marker-information-usage-technique">Marker Information Usage Technique</h2>
 
 <p>Once you have obtained an audio file and the respective marker information XML document, you are ready to highlight text.</p>
@@ -2171,8 +2124,7 @@ Due to the overhead of creation, we strongly recommend using short sentences ins
 <blockquote>
 <p>HTTP GET network transaction to retrieve viseme positions</p>
 </blockquote>
-<pre class="highlight shell"><code>http://api.ispeech.org/api/rest?apikey<span class="o">=</span>YOUR_API_KEY&amp;action<span class="o">=</span>viseme
-&amp;text<span class="o">=</span>hello+world
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.ispeech.org/api/rest?action=viseme&amp;text=hello+world"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
