@@ -3,10 +3,17 @@
 > Example HTTP GET Request (Using most variables)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=mp3
-&frequency=44100&bitrate=128&speed=1&startpadding=1&endpadding=1
-&pitch=110&filename=myaudiofile"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=mp3
+      &frequency=44100
+      &bitrate=128
+      &speed=1
+      &startpadding=1
+      &endpadding=1
+      &pitch=110
+      &filename=myaudiofile"
 ```
 
 The iSpeech Text-To-Speech API allows you to synthesize high-quality spoken audio in multiple formats. The iSpeech API doesn’t use callbacks because it’s fast and synchronous. You'll always receive audio data or an error message in the same HTTP transaction.
@@ -35,8 +42,10 @@ Library (optional) | String | libmath
 > HTTP GET Request (Setting voice to European French Female)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&format=mp3&voice=eurfrenchfemale"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &format=mp3
+      &voice=eurfrenchfemale"
 ```
 
 Name | Alias
@@ -99,8 +108,7 @@ Custom Voice | customvoice1 (voice=customvoice1)
 > HTTP GET Network Transaction to get XML voice list.
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=information&output=(xml, rest, or json)"
+curl "http://api.ispeech.org/api/rest?action=information&output=xml"
 ```
 
 > XML Response
@@ -141,22 +149,33 @@ curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
 > REST / URL Encoded Response
 
 ```shell
-"result=success&voice-1=krkoreanfemale2&voice-locale-1-1=ko-kr&voice-gender-1=female&voice-description-1=Korean+Female+Voice&voice-2=eurfinnishfemale&voice-locale-2-1=fi-fi&voice-gender-2=female&voice-description-2=Finnish+Female+Voice&voice-3=chchinesemale1&voice-locale-3-1=zh&voice-locale-3-2=zh-hk[...more voices...]"
+curl "http://api.ispeech.org/api/rest?result=success
+      &voice-1=krkoreanfemale2
+      &voice-locale-1-1=ko-kr
+      &voice-gender-1=female
+      &voice-description-1=Korean+Female+Voice
+      &voice-2=eurfinnishfemale
+      &voice-locale-2-1=fi-fi
+      &voice-gender-2=female
+      &voice-description-2=Finnish+Female+Voice
+      &voice-3=chchinesemale1
+      &voice-locale-3-1=zh
+      &voice-locale-3-2=zh-hk
+      &[...more voices...]"
 ```
 
 A current list of voices that are enabled for an API key can be retrieved in REST, JSON, and XML format by using the following service.  HTTP GET and POST are supported.  A web browser or a REST client can be used to make these HTTP requests.
-
-Parameter | Supported Values
----------- | -------
-output | xml, json, rest
 
 ## Speed
 
 > HTTP GET Request (Setting speed to 5)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=mp3&speed=5"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=mp3
+      &speed=5"
 ```
 
 Most voices support speed controls.
@@ -174,8 +193,11 @@ Slowest | -10
 > HTTP GET Request (Setting bitrate to 16 kilobits per second)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=mp3&bitrate=16"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=mp3
+      &bitrate=16"
 ```
 
 ### Note: Bitrates can only be selected for MP3s.
@@ -188,8 +210,10 @@ Bitrates are listed in kilobits per second.
 > Example HTTP GET Request (Setting format to wav)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=wav"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=wav"
 ```
 
 Name | Extension
@@ -210,8 +234,10 @@ MPEG-4 | mp4
 > Example HTTP GET Request (Setting frequency to 16000 Hz)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&frequency=16000"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &frequency=16000"
 ```
 
 Possible values: 8000, 11025, 16000 (default), 22050, 24000, 32000, 44100, 48000 cycles per second (Hertz)
@@ -225,8 +251,10 @@ Padding adds silence to a section of the audio file.
 > Example HTTP GET Request (Setting start padding to 3 seconds)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&startpadding=3"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &startpadding=3"
 ```
 
 Adds a period of silence to the beginning of the audio file.
@@ -236,8 +264,10 @@ Adds a period of silence to the beginning of the audio file.
 > Example HTTP GET Request (Setting end padding to 3 seconds)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&endpadding=3"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &endpadding=3"
 ```
 
 Adds a period of silence to the beginning of the audio file.
@@ -247,8 +277,10 @@ Adds a period of silence to the beginning of the audio file.
 > Example HTTP GET Request (Setting pitch to 50)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&pitch=50"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &pitch=50"
 ```
 
 Possible values: 0 to 200 (integer), 0 is lowest pitch, 100 is default, 200 is highest pitch. Pitch is enabled only on some voices.
@@ -258,9 +290,11 @@ Possible values: 0 to 200 (integer), 0 is lowest pitch, 100 is default, 200 is h
 > Example HTTP GET Request (Setting bit depth to 8)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=wav
-&bitdepth=8"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=wav
+      &bitdepth=8"
 ```
 
 The bit depth is amount of audio detail for each audio sample.  
@@ -272,9 +306,11 @@ Possible values are 8 and 16 (default) bits/sample on AIFF, FLAC, and WAVE file 
 > Example HTTP GET Request (Setting filename of audio)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=wav
-&filename=myaudiofile"
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=wav
+      &filename=myaudiofile"
 ```
 
 The filename is the name of the audio file that will download.  Specifying the extension is optional.  If the extension is missing, the correct extension will be added automatically.  The default is rest.[extension], for example:  rest.mp3.
@@ -284,16 +320,16 @@ The filename is the name of the audio file that will download.  Specifying the e
 > Example HTTP GET Request (Emphasis added on the word big)
 
 ```shell
-curl "http://api.ispeech.org/api/rest?apikey=YOUR_API_KEY_HERE&
-action=ssml&ssml=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cspeak
-%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org
-%2F2001%2F10%2Fsynthesis%22%20xmlns%3Axsi%3D%22http%3A%2F%2F
-www.w3.org%2F2001%2FXMLSchema-instance%22
-%20xsi%3AschemaLocation%3D%22http%3A%2F%2Fwww.w3.org%2F2001
-%2F10%2Fsynthesis%20http%3A%2F%2Fwww.w3.org%2FTR%2Fspeech-synthesis
-%2Fsynthesis.xsd%22%20xml%3Alang%3D%22en-US%22%3E
-That%20is%20a%20%3Cemphasis%3E%20big%20%3C%2Femphasis%3E%20car!
-%3C%2Fspeak%3E"
+curl "http://api.ispeech.org/api/rest?
+      action=ssml&ssml=%3C%3Fxml%20version%3D%221.0%22%3F%3E%3Cspeak
+      %20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org
+      %2F2001%2F10%2Fsynthesis%22%20xmlns%3Axsi%3D%22http%3A%2F%2F
+      www.w3.org%2F2001%2FXMLSchema-instance%22
+      %20xsi%3AschemaLocation%3D%22http%3A%2F%2Fwww.w3.org%2F2001
+      %2F10%2Fsynthesis%20http%3A%2F%2Fwww.w3.org%2FTR%2Fspeech-synthesis
+      %2Fsynthesis.xsd%22%20xml%3Alang%3D%22en-US%22%3E
+      That%20is%20a%20%3Cemphasis%3E%20big%20%3C%2Femphasis%3E%20car!
+      %3C%2Fspeak%3E"
 ```
 
 > Response
@@ -323,9 +359,9 @@ More information on SSML can be found at: http://www.w3.org/TR/speech-synthesis/
 
 ```shell
 curl "http://api.ispeech.org/api/rest?action=convert
-&apikey=YOUR_API_KEY_HERE&library=libmath
-&text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
-%3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"
+      &library=libmath
+      &text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
+      %3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"
 ```
 
 > Response
@@ -363,91 +399,32 @@ mtable, table | Creates tables or matrices. Inside a `<mtable>`, only `<mtr>` an
 > HTTP POST URL encoded request for Text to Speech
 
 ```shell
-POST /api/rest HTTP/1.1
-Content-Length: 71
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-apikey=developerdemokeydeveloperdemokey&action=convert&text=hello+world
-```
-
-> HTTP Response
-
-```shell
-HTTP/1.0 200 OK
-Connection: close
-Server: iSpeech Cloud/1.2
-Accept-Ranges: none
-X-Time-Length: 3853
-X-Content-Hash: e969ef3dd0dc0e9c417f31f7ffbd10ed
-Content-Length: 23760
-Content-Type: audio/mpeg
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-[mp3 binary audio data]
+curl -X POST -d "action=convert&text=hello+world" "http://api.ispeech.org/api/rest"
 ```
 
 > HTTP POST JSON request for Text to Speech
 
 ```shell
-POST /api/json HTTP/1.1
-Content-Length: 111
-Content-Type: application/json; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-{"apikey":"developerdemokeydeveloperdemokey","action":"convert","text":"hello world","voice":"usenglishfemale"}
-```
-
-> HTTP Response
-
-```shell
-Connection: close
-Server: iSpeech Cloud/1.2
-Accept-Ranges: none
-X-Time-Length: 3853
-X-Content-Hash: e969ef3dd0dc0e9c417f31f7ffbd10ed
-Content-Length: 23760
-Content-Type: audio/mpeg
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-[mp3 audio binary data]
+curl -X POST -H "Content-Type:application/json"
+    -d '{"action":"convert","text":"hello world","voice":"usenglishfemale"}'
+    "http://api.ispeech.org/api/json"
 ```
 
 > HTTP POST XML request for Text to Speech
 
-```xml
-POST /api/xml HTTP/1.1
-Content-Length: 150
-Content-Type: application/xml; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-<data>
-<apikey>developerdemokeydeveloperdemokey</apikey>
-<action>convert</action>
-<text>hello world</text>
-<voice>usenglishfemale</voice>
-</data>
+```shell
+curl -X POST -H "Content-Type:application/xml"
+-d "<data>
+    <apikey>developerdemokeydeveloperdemokey</apikey>
+    <action>convert</action>
+    <text>hello world</text>
+    <voice>usenglishfemale</voice>
+    </data>" "http://api.ispeech.org/api/xml"
 ```
 
 > HTTP Response
 
 ```shell
-HTTP/1.0 200 OK
-Connection: close
-Server: iSpeech Cloud/1.2
-Accept-Ranges: none
-X-Time-Length: 3853
-X-Content-Hash: 4affe15913fccd851ebf08a7e2650955
-Content-Length: 23760
-Content-Type: audio/mpeg
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 [mp3 audio binary data]
 ```
 
@@ -455,29 +432,15 @@ Pragma: no-cache
 > Responses with an error message return HTTP status response code “HTTP/1.0 202 Accepted”.
 
 ```shell
-GET /api/rest?apikey=developerdemokeydeveloperdemokey&action=convert&
-text=something&output=rest&voice=usenglishfemal HTTP/1.1
-Host: api.ispeech.org
-Connection: keep-alive
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.58 Safari/535.2
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Encoding: gzip,deflate,sdch
-Accept-Language: en-US,en;q=0.8
-Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &output=rest
+      &voice=usenglishfemal"
 ```
 
 > Response
 
 ```shell
-HTTP/1.0 202 Accepted
-Server: iSpeech Cloud/1.2
-Connection: close
-Content-Length: 41
-Content-Type: text/plain
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0,
-proxy-revalidate, no-transform
-Pragma: no-cache
-
 result=error&code=8&message=Invalid+voice
 ```
 
@@ -485,6 +448,70 @@ The following examples are packet captures from TCP connections that used the HT
 
 ## Example network transactions containing MathML
 
+> HTTP GET, URL Encoded Request and Reply, +7 (says positive 7)
+
+```shell
+curl "http://api.ispeech.org/api/rest?action=convert
+      &voice=usenglishfemale
+      &library=libmath
+      &format=mp3
+      &text=%3Cfmath%3E%3Cmrow%3E%3Cmtext%3E%3Csup%3E%2B%3C%2Fsup%3E%3C%2Fmtext%3E
+      %3Cmn%3E7%3C%2Fmn%3E%3C%2Fmrow%3E%3C%2Ffmath%3E"
+```
+
+> HTTP POST JSON Text-to-Speech request containing MathML
+
+```shell
+curl -X POST -H "Content-Type:application/json"
+  -d '{"action":"convert",
+  "text":"<mrow><mtext><sup>-</sup></mtext><span mtagname=\"mfrac\">
+  <span class=\"fm-vert fm-frac\">
+  <table><tbody>
+  <tr><td class=\"fm-num-frac fm-inline\"><mn>3</mn></td></tr>
+  <tr><td class=\"fm-den-frac fm-inline\"><mn>5</mn></td></tr>
+  </tbody></table>
+  </span></span></mrow>",
+  "voice":"usenglishfemale",
+  "library":"libmath"}' "http://api.ispeech.org/api/json"
+```
+
+> HTTP POST XML Text-to-Speech request containing MathML (The text: “+7” gets spoken as “positive seven”)
+
+```shell
+curl -X POST -H "Content-Type:application/xml"
+  -d "<data>
+  <action>convert</action>
+  <text>&lt;msup&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;span class=&quot;fm-script fm-inline&quot;&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/span&gt;&lt;/msup&gt;</text>
+  <library>libmath</library>
+  <voice>usenglishfemale</voice>
+  </data>" "http://api.ispeech.org/api/xml"
+
+> Response
+
+```shell
+[...mp3 binary data...]
+```
+
+The following examples are packet captures from TCP connections that used the HTTP protocol.  You can compare your network traffic to these transactions to debug code.  Wireshark can be used to analyze network connections.  A REST client can be used to make these HTTP requests.
+
+More information on MathML is available on http://www.w3.org/TR/MathML2/ and https://developer.mozilla.org/en-US/docs/MathML
+
+### HTTP GET URL encoded Text-to-Speech request containing MathML
+
+URL encoded Request Information |
+------- | -------
+Text: “+7” (says, positive seven) | 
+MathML used: `<mrow><mtext><sup>+</sup></mtext><mn>7</mn></mrow>` |
+
+POST JSON Request Information |
+------- | -------
+Text: “-3/5” (says, negative three fifths) | 
+MathML used: `<mrow><mtext><sup>-</sup></mtext><span mtagname="mfrac"><span class="fm-vert fm-frac"><table><tbody><tr><td class="fm-num-frac fm-inline"><mn>3</mn></td></tr><tr><td class="fm-den-frac fm-inline"><mn>5</mn></td></tr></tbody></table></span></span></mrow>` |
+
+POST XML Request Information |
+------- | -------
+Text: “10^3” (says, 10 to the power of 3) | 
+Math ML: `<msup><mn>10</mn><span class="fm-script fm-inline"><mn>3</mn></span></msup>` |
 
 ## Errors
 

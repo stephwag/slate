@@ -105,87 +105,41 @@ The speexmode variable tells the server which format your Speex data is encoded 
 > HTTP REST Request for Speech Recognition
 
 ```shell
-POST /api/rest HTTP/1.1
-Content-Length: 34875
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-apikey=developerdemokeydeveloperdemokey&action=recognize&freeform=1&content-type=audio/x-wav&output=rest&locale=en-us&audio=[base64 encoded something.wav without \r\n characters]
-```
-
-> HTTP Response
-
-```shell
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 59
-Content-Type: text/plain
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
-text=something&confidence=0.0216270890086889&result=success
+curl -X POST -d "action=recognize&freeform=1&content-type=audio/x-wav&output=rest&locale=en-us&audio=[base64 encoded something.wav without \r\n characters]" "http://api.ispeech.org/api/rest"
 ```
 
 > HTTP JSON Request for Speech Recognition
 
-```json
-POST /api/json HTTP/1.1
-Content-Length: 34897
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-
-{"apikey":"developerdemokeydeveloperdemokey","action":"recognize",
-"freeform":"1", "locale":"en-us", "content-type":"audio/x-wav", "output":"rest", "audio":"[base64 encoded something.wav without \r\n characters]”}
+```shell
+curl -X POST -H "Content-Type:application/json"
+  -d '{"apikey":"developerdemokeydeveloperdemokey","action":"recognize",
+  "freeform":"1", "locale":"en-us", "content-type":"audio/x-wav", "output":"rest", "audio":"[base64 encoded something.wav without \r\n characters]”}' "http://api.ispeech.org/api/json"
 ```
 
 > Response
 
 ```shell
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 59
-Content-Type: application/json
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 text=something&confidence=0.0134419081732631&result=success
 ```
 
 > HTTP XML network request for Speech Recognition
 
-```xml
-
-POST /api/xml HTTP/1.1
-Content-Length: 34953
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.0.1 (java 1.5)
-Expect: 100-Continue
-
-<data>
-<apikey>developerdemokeydeveloperdemokey</apikey>
-<action>recognize</action>
-<freeform>1</freeform>
-<locale>en-us</locale>
-<content-type>audio/x-wav</content-type>
-<output>xml</output>
-<audio>[base64 encoded something.wav without \r\n characters]</audio>
-</data>
+```shell
+curl -X POST -H "Content-Type:application/xml"
+  -d "<data>
+      <apikey>developerdemokeydeveloperdemokey</apikey>
+      <action>recognize</action>
+      <freeform>1</freeform>
+      <locale>en-us</locale>
+      <content-type>audio/x-wav</content-type>
+      <output>xml</output>
+      <audio>[base64 encoded something.wav without \r\n characters]</audio>
+      </data>" "http://api.ispeech.org/api/xml"
 ```
 
 > XML Response
 
 ```xml
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 140
-Content-Type: text/xml
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
 <text>something</text>
@@ -206,36 +160,24 @@ Command lists are used to limit the possible values returned during speech recog
 
 > HTTP XML network request to detect commands from a list
 
-```xml
-POST /api/xml HTTP/1.1
-Content-Length: 80941
-Content-Type: text/xml; charset=UTF-8
-Host: api.ispeech.org
-Expect: 100-Continue
-
-<data>
-<apikey>developerdemokeydeveloperdemokey</apikey>
-<action>recognize</action>
-<locale>en-US</locale>
-<output>xml</output>
-<alias>command1|YESNOMAYBE</alias>
-<YESNOMAYBE>yes|no|maybe</YESNOMAYBE>
-<command1>say %YESNOMAYBE%</command1>
-<content-type>audio/x-wav</content-type>
-<audio>[base64 encoded say_yes.wav without \r\n characters]</audio>
-</data>
+```shell
+curl -X POST -H "Content-Type:application/xml"
+-d "<data>
+    <apikey>developerdemokeydeveloperdemokey</apikey>
+    <action>recognize</action>
+    <locale>en-US</locale>
+    <output>xml</output>
+    <alias>command1|YESNOMAYBE</alias>
+    <YESNOMAYBE>yes|no|maybe</YESNOMAYBE>
+    <command1>say %YESNOMAYBE%</command1>
+    <content-type>audio/x-wav</content-type>
+    <audio>[base64 encoded say_yes.wav without \r\n characters]</audio>
+    </data>" "http://api.ispeech.org/api/xml"
 ```
 
 > XML Response
 
 ```xml
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 137
-Content-Type: text/xml
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
 <text>say yes</text>
@@ -247,94 +189,55 @@ Pragma: no-cache
 > HTTP REST network request to detect commands from a list
 
 ```shell
-POST /api/rest/ HTTP/1.1
-Content-Length: 72682
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Expect: 100-Continue
-
-apikey=developerdemokeydeveloperdemokey&action=recognize&locale=en-us&content-type=audio%2Fwav&output=rest&alias=command1|NAMES
-&NAMES=john|mary|anna&command1=call%20%25NAMES%25&audio=[base64 encoded wav without \r\n characters]
+curl -X POST -d "action=recognize&locale=en-us&content-type=audio%2Fwav&output=rest&alias=command1|NAMES
+&NAMES=john|mary|anna&command1=call%20%25NAMES%25&audio=[base64 encoded wav without \r\n characters]" "http://api.ispeech.org/api/rest"
 ```
 
 > HTTP Response
 
 ```shell
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 58
-Content-Type: text/plain
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 text=call+mary&confidence=0.672464966773987&result=success
 ```
 
 > HTTP POST JSON request to detect commands from a list
 
-```json
-POST /api/json/ HTTP/1.1
-Content-Length: 22788
-Content-Type: text/plain; charset=UTF-8
-Host: api.ispeech.org
-Expect: 100-Continue
-
-{"apikey":"developerdemokeydeveloperdemokey","action":"recognize","locale":"en-US","alias":"command1|YESNOMAYBE","YESNOMAYBE":"yes|no|maybe","command1":"say %YESNOMAYBE%","content-type":"audio/x-wav","output":"rest","audio":"[base64 encoded say_yes.wav without \r\n characters]"}
+```shell
+curl -X POST -H "Content-Type:application/json"
+-d '{"action":"recognize","locale":"en-US","alias":"command1|YESNOMAYBE","YESNOMAYBE":"yes|no|maybe","command1":"say %YESNOMAYBE%","content-type":"audio/x-wav","output":"rest","audio":"[base64 encoded say_yes.wav without \r\n characters]"}' "http://api.ispeech.org/api/json"
 ```
 
 > Response
 
 ```shell
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 56
-Content-Type: application/json
-Cache-Control: no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 text=say+yes&confidence=0.726751327514648&result=success
 ```
 
 > Advanced Example, HTTP POST XML request to detect multiple audio commands from multiple lists
 
-```xml
-POST /api/xml HTTP/1.1
-Content-Length: 91393
-Content-Type: text/xml; charset=UTF-8
-Host: api.ispeech.org
-Connection: Keep-Alive
-Expect: 100-Continue
-
-<data>
-<apikey>developerdemokeydeveloperdemokey</apikey>
-<action>recognize</action>
-<locale>en-us</locale>
-<content-type>audio/x-wav</content-type>
-<output>xml</output>
-<alias>command1|command2|MONITORACTIONS|COLORLIST|
-DYNAMITEACTIONS|OBJECTLIST</alias>
-<MONITORACTIONS>on|off|reset</MONITORACTIONS>
-<COLORLIST>blue|green|red|yellow|purple|orange|black|white|cyan</COLORLIST>
-<DYNAMITEACTIONS>explode|fizzle out</DYNAMITEACTIONS>
-<OBJECTLIST>monitor %MONITORACTIONS%|color %COLORLIST%|dynamite  %DYNAMITEACTIONS%</OBJECTLIST>
-<command1>set %OBJECTLIST%</command1>
-<command2>quit menu</command2>
-<audio>[base64 encoded set_dynamite_explode.wav
-without \r\n characters]</audio>
-</data>
+```shell
+curl -X POST -H "Content-Type:application/xml"
+  -d "<data>
+      <apikey>developerdemokeydeveloperdemokey</apikey>
+      <action>recognize</action>
+      <locale>en-us</locale>
+      <content-type>audio/x-wav</content-type>
+      <output>xml</output>
+      <alias>command1|command2|MONITORACTIONS|COLORLIST|
+      DYNAMITEACTIONS|OBJECTLIST</alias>
+      <MONITORACTIONS>on|off|reset</MONITORACTIONS>
+      <COLORLIST>blue|green|red|yellow|purple|orange|black|white|cyan</COLORLIST>
+      <DYNAMITEACTIONS>explode|fizzle out</DYNAMITEACTIONS>
+      <OBJECTLIST>monitor %MONITORACTIONS%|color %COLORLIST%|dynamite  %DYNAMITEACTIONS%</OBJECTLIST>
+      <command1>set %OBJECTLIST%</command1>
+      <command2>quit menu</command2>
+      <audio>[base64 encoded set_dynamite_explode.wav
+      without \r\n characters]</audio>
+      </data>" "http://api.ispeech.org/api/xml"
 ```
 
 > XML Response
 
 ```xml
-HTTP/1.0 200 OK
-Connection: close
-Content-Length: 150
-Content-Type: text/xml
-Cache-Control: no-cache, no-store, must-revalidate,
-max-age=0, proxy-revalidate, no-transform
-Pragma: no-cache
-
 <?xml version="1.0" encoding="UTF-8"?><data><text>set dynamite explode</text><confidence>0.589247465133667</confidence>
 <result>success</result></data>
 ```

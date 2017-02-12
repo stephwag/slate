@@ -23,8 +23,7 @@ This is accomplished by first retrieving audio from the iSpeech API (see section
 > HTTP GET network transaction to retrieve viseme positions
 
 ```shell
-http://api.ispeech.org/api/rest?apikey=YOUR_API_KEY&action=viseme
-&text=hello+world
+curl "http://api.ispeech.org/api/rest?action=viseme&text=hello+world"
 ```
 
 > Response

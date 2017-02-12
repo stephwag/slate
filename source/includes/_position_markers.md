@@ -5,10 +5,17 @@
 > Example HTTP GET Request (Using most variables)
 
 ```shell
-http://api.ispeech.org/api/rest?apikey=developerdemokeydeveloperdemokey
-&action=convert&text=something&voice=usenglishfemale&format=mp3
-&frequency=44100&bitrate=128&speed=1&startpadding=1&endpadding=1
-&pitch=110&filename=myaudiofile
+curl "http://api.ispeech.org/api/rest?action=convert
+      &text=something
+      &voice=usenglishfemale
+      &format=mp3
+      &frequency=44100
+      &bitrate=128
+      &speed=1
+      &startpadding=1
+      &endpadding=1
+      &pitch=110
+      &filename=myaudiofile"
 ```
 
 Parameter | Data Type | Example Value
@@ -29,15 +36,10 @@ This is accomplished by first retrieving audio from the iSpeech API (see section
 
 ## Example Transactions for Position Markers
 
-### Note: Marker data is currently only presented in XML form.
-
-To obtain marker information from the iSpeech API, you query the server in the same manner as a normal text-to-speech request. The only difference between a TTS request and a marker request is the “action” parameter, which is set to “convert” for audio, and “markers” for marker information.
-
 > HTTP GET network transaction to retrieve position markers
 
 ```shell
-http://api.ispeech.org/api/rest?apikey=YOUR_API_KEY&action=markers
-&text=hello+world
+curl "http://api.ispeech.org/api/rest?action=markers&text=hello+world"
 ```
 
 > Response
@@ -65,6 +67,10 @@ http://api.ispeech.org/api/rest?apikey=YOUR_API_KEY&action=markers
     </word>
 </markers>
 ```
+
+### Note: Marker data is currently only presented in XML form.
+
+To obtain marker information from the iSpeech API, you query the server in the same manner as a normal text-to-speech request. The only difference between a TTS request and a marker request is the “action” parameter, which is set to “convert” for audio, and “markers” for marker information.
 
 ## Marker Information Usage Technique
 

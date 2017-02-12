@@ -18,4 +18,4 @@ HTTP GET/POST | JSON | http://api.ispeech.org/api/json
 
 Parameter | Supported Values
 ---------- | -------
-output | xml, json, rest
+output (optional) | xml, json, rest (default)
