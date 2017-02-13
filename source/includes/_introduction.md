@@ -55,7 +55,7 @@ iSpeech sales can be contacted at the following phone number: +1-917-338-7723 fr
 
 ### Support / Troubleshooting
 
-Please look for the answer to your problem in the iSpeech Developer Forum: http://www.ispeech.org/forums/
+Please contact our support team at <a href="mailto:support@ispeech.org">support@ispeech.org</a>.
 
 ## Software Development Kits
 

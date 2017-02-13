@@ -1,4 +1,4 @@
-# Developer Guide
+# Disclaimer
 
 iSpeech Inc. (“iSpeech”) has made efforts to ensure the accuracy and
 completeness of the information in this document. However, iSpeech Inc. disclaims all
